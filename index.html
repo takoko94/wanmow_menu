@@ -450,7 +450,7 @@ type="range"
 id="volumeSlider"
 min="0"
 max="100"
-value="30">
+value="1">
 
 </div>
 
@@ -650,7 +650,9 @@ document.getElementById(
 "startButton"
 );
 
-bgm.volume = 0.01;
+/* 初期音量 */
+
+bgm.volume = 0.002;
 
 /* 再生 */
 
@@ -680,7 +682,8 @@ slider.addEventListener(
 ()=>{
 
 bgm.volume =
-slider.value / 100;
+(slider.value / 100)
+* 0.01;
 
 });
 

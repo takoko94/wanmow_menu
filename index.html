@@ -52,7 +52,11 @@ padding:18px;
 
 color:#5c4b42;
 
+position:relative;
+
 }
+
+/* 全体 */
 
 .wrapper{
 
@@ -65,6 +69,8 @@ flex-direction:column;
 gap:14px;
 
 }
+
+/* タイトル */
 
 .header{
 
@@ -86,7 +92,12 @@ color:#d28fa2;
 
 border:3px solid #eadfd7;
 
+box-shadow:
+0 8px 20px rgba(0,0,0,0.05);
+
 }
+
+/* メイン */
 
 .main{
 
@@ -97,6 +108,8 @@ display:flex;
 gap:14px;
 
 }
+
+/* 左 */
 
 .left{
 
@@ -116,7 +129,12 @@ flex-direction:column;
 
 gap:10px;
 
+box-shadow:
+0 8px 20px rgba(0,0,0,0.05);
+
 }
+
+/* 右 */
 
 .right{
 
@@ -130,7 +148,12 @@ padding:18px;
 
 border:3px solid #eadfd7;
 
+box-shadow:
+0 8px 20px rgba(0,0,0,0.05);
+
 }
+
+/* 見出し */
 
 .title{
 
@@ -145,6 +168,8 @@ margin-bottom:8px;
 text-align:center;
 
 }
+
+/* ランク */
 
 .rank{
 
@@ -166,6 +191,11 @@ font-weight:900;
 
 margin-bottom:10px;
 
+animation:pop 0.4s;
+
+box-shadow:
+0 4px 10px rgba(0,0,0,0.04);
+
 }
 
 .gold{
@@ -184,6 +214,8 @@ background:#f7e7de;
 background:#fff8fb;
 }
 
+/* 左側 */
+
 .rank-left{
 
 display:flex;
@@ -193,6 +225,8 @@ align-items:center;
 gap:16px;
 
 }
+
+/* メダル */
 
 .medal{
 
@@ -210,13 +244,20 @@ justify-content:center;
 
 font-size:24px;
 
+box-shadow:
+0 4px 10px rgba(0,0,0,0.05);
+
 }
+
+/* 票数 */
 
 .vote{
 
 color:#d28fa2;
 
 }
+
+/* 6-10 */
 
 .grid{
 
@@ -228,6 +269,8 @@ grid-template-columns:
 gap:10px;
 
 }
+
+/* 下位カード */
 
 .small{
 
@@ -248,7 +291,12 @@ font-weight:900;
 
 border:3px solid #eadfd7;
 
+box-shadow:
+0 4px 10px rgba(0,0,0,0.04);
+
 }
+
+/* 更新 */
 
 .update{
 
@@ -262,11 +310,88 @@ opacity:0.6;
 
 }
 
+/* 音量UI */
+
+.volume-box{
+
+position:absolute;
+
+top:20px;
+right:20px;
+
+background:white;
+
+padding:10px 16px;
+
+border-radius:999px;
+
+display:flex;
+
+align-items:center;
+
+gap:10px;
+
+border:3px solid #eadfd7;
+
+box-shadow:
+0 4px 10px rgba(0,0,0,0.05);
+
+z-index:9999;
+
+}
+
+#volumeSlider{
+
+width:140px;
+
+}
+
+/* アニメ */
+
+@keyframes pop{
+
+0%{
+transform:scale(0.95);
+opacity:0;
+}
+
+100%{
+transform:scale(1);
+opacity:1;
+}
+
+}
+
 </style>
 
 </head>
 
 <body>
+
+<!-- BGM -->
+
+<audio id="bgm" autoplay loop>
+
+<source
+src="bgm.wav"
+type="audio/wav">
+
+</audio>
+
+<!-- 音量 -->
+
+<div class="volume-box">
+
+🔊
+
+<input
+type="range"
+id="volumeSlider"
+min="0"
+max="100"
+value="30">
+
+</div>
 
 <div class="wrapper">
 
@@ -275,6 +400,8 @@ opacity:0.6;
 </div>
 
 <div class="main">
+
+<!-- TOP5 -->
 
 <div class="left">
 
@@ -285,6 +412,8 @@ opacity:0.6;
 <div id="top5"></div>
 
 </div>
+
+<!-- 6-10 -->
 
 <div class="right">
 
@@ -309,8 +438,12 @@ id="update">
 
 <script>
 
+/* GAS URL */
+
 const API_URL =
 "https://script.google.com/macros/s/AKfycby7mjB5m4pMi63DHtdYOgfEZaQ7TJyAi3mOfndk7WHXyWDsvHeqFFCfdHI6BvjQQoNz6g/exec";
+
+/* ランキング取得 */
 
 async function loadRanking(){
 
@@ -338,6 +471,8 @@ console.log(e);
 }
 
 }
+
+/* 描画 */
 
 function drawRanking(ranking){
 
@@ -428,12 +563,37 @@ ${dog.votes}票
 
 }
 
+/* 初回 */
+
 loadRanking();
+
+/* 10秒更新 */
 
 setInterval(
 loadRanking,
 10000
 );
+
+/* 音量 */
+
+const bgm =
+document.getElementById("bgm");
+
+const slider =
+document.getElementById(
+"volumeSlider"
+);
+
+bgm.volume = 0.3;
+
+slider.addEventListener(
+"input",
+()=>{
+
+bgm.volume =
+slider.value / 100;
+
+});
 
 </script>
 

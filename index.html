@@ -344,6 +344,55 @@ z-index:9999;
 
 width:140px;
 
+cursor:pointer;
+
+}
+
+/* 再生ボタン */
+
+.start-button{
+
+position:absolute;
+
+top:50%;
+left:50%;
+
+transform:
+translate(-50%,-50%);
+
+background:white;
+
+border:none;
+
+border-radius:999px;
+
+padding:22px 40px;
+
+font-size:32px;
+
+font-weight:900;
+
+color:#d28fa2;
+
+cursor:pointer;
+
+border:4px solid #eadfd7;
+
+box-shadow:
+0 8px 20px rgba(0,0,0,0.1);
+
+z-index:99999;
+
+transition:0.2s;
+
+}
+
+.start-button:hover{
+
+transform:
+translate(-50%,-50%)
+scale(1.05);
+
 }
 
 /* アニメ */
@@ -370,13 +419,25 @@ opacity:1;
 
 <!-- BGM -->
 
-<audio id="bgm" autoplay loop>
+<audio
+id="bgm"
+loop>
 
 <source
 src="bgm.mp3"
 type="audio/mpeg">
 
 </audio>
+
+<!-- 再生ボタン -->
+
+<button
+class="start-button"
+id="startButton">
+
+🎵 BGM START 🎵
+
+</button>
 
 <!-- 音量 -->
 
@@ -567,14 +628,14 @@ ${dog.votes}票
 
 loadRanking();
 
-/* 10秒更新 */
+/* 自動更新 */
 
 setInterval(
 loadRanking,
 10000
 );
 
-/* 音量 */
+/* 音楽 */
 
 const bgm =
 document.getElementById("bgm");
@@ -584,7 +645,35 @@ document.getElementById(
 "volumeSlider"
 );
 
+const startButton =
+document.getElementById(
+"startButton"
+);
+
 bgm.volume = 0.3;
+
+/* 再生 */
+
+startButton.addEventListener(
+"click",
+async ()=>{
+
+try{
+
+await bgm.play();
+
+startButton.style.display =
+"none";
+
+}catch(e){
+
+console.log(e);
+
+}
+
+});
+
+/* 音量 */
 
 slider.addEventListener(
 "input",

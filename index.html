@@ -39,33 +39,65 @@ background:
 linear-gradient(
 180deg,
 #fff9fb 0%,
-#fff6f3 100%
+#fff4f7 100%
 );
-
-padding:18px;
-
-color:#5c4b42;
 
 position:relative;
 
+color:#6a4a43;
+
 }
 
-/* 背景肉球 */
+/* 背景 */
 
 body::before{
 
-content:"🐾 🐾 🐾 🐾 🐾";
+content:"";
 
 position:absolute;
 
-top:20px;
+inset:0;
+
+background:
+
+radial-gradient(
+circle at 10% 20%,
+rgba(255,192,203,0.25),
+transparent 18%
+),
+
+radial-gradient(
+circle at 85% 25%,
+rgba(255,220,230,0.3),
+transparent 16%
+),
+
+radial-gradient(
+circle at 50% 90%,
+rgba(255,210,220,0.25),
+transparent 18%
+);
+
+pointer-events:none;
+
+}
+
+/* 肉球 */
+
+body::after{
+
+content:"🐾 🦴 🐾 💖 🐾";
+
+position:absolute;
+
+top:16px;
 left:20px;
 
-font-size:90px;
+font-size:80px;
 
-opacity:0.04;
+opacity:0.05;
 
-letter-spacing:60px;
+letter-spacing:50px;
 
 pointer-events:none;
 
@@ -75,8 +107,10 @@ pointer-events:none;
 
 .wrapper{
 
-width:1244px;
-height:684px;
+width:1280px;
+height:720px;
+
+padding:18px;
 
 display:flex;
 flex-direction:column;
@@ -88,34 +122,18 @@ z-index:2;
 
 }
 
-/* タイトル */
+/* ヘッダー */
 
 .header{
 
-height:92px;
+height:170px;
 
-background:
-linear-gradient(
-180deg,
-#ffffff,
-#fff7fb
-);
-
-border-radius:32px;
+position:relative;
 
 display:flex;
 
 align-items:center;
 justify-content:center;
-
-border:4px solid #f3dfe6;
-
-box-shadow:
-0 10px 24px rgba(210,143,162,0.12);
-
-position:relative;
-
-overflow:hidden;
 
 }
 
@@ -123,46 +141,52 @@ overflow:hidden;
 
 .logo{
 
-max-width:95%;
+max-width:760px;
 
-max-height:72px;
+max-height:160px;
 
 object-fit:contain;
 
 filter:
 drop-shadow(
-0 4px 8px
-rgba(0,0,0,0.08)
+0 10px 20px
+rgba(0,0,0,0.12)
 );
 
-animation:pop 0.5s;
+animation:floatLogo 3s ease-in-out infinite;
 
-position:relative;
-z-index:2;
+z-index:3;
 
 }
 
-/* キラ */
+/* わんこ */
 
-.header::after{
-
-content:"";
+.dog{
 
 position:absolute;
 
-top:-40px;
-left:-120px;
+bottom:0;
 
-width:220px;
-height:160px;
+width:170px;
 
-background:
-rgba(255,255,255,0.5);
+animation:
+floatDog 2.8s ease-in-out infinite;
 
-transform:rotate(25deg);
+filter:
+drop-shadow(
+0 6px 10px
+rgba(0,0,0,0.08)
+);
 
-animation:shine 5s linear infinite;
+}
 
+.dog.left{
+left:20px;
+}
+
+.dog.right{
+right:20px;
+animation-delay:1s;
 }
 
 /* メイン */
@@ -173,28 +197,56 @@ flex:1;
 
 display:flex;
 
-gap:14px;
+gap:18px;
 
 }
 
-/* 左右共通 */
+/* 左右 */
 
 .left,
 .right{
 
 background:
-rgba(255,255,255,0.92);
+rgba(255,255,255,0.82);
 
-backdrop-filter:blur(8px);
+backdrop-filter:blur(10px);
 
-border-radius:32px;
+border-radius:36px;
+
+border:4px solid #ffe1ea;
+
+box-shadow:
+0 10px 25px rgba(255,170,190,0.12);
 
 padding:18px;
 
-border:4px solid #f1e3dc;
+position:relative;
 
-box-shadow:
-0 8px 24px rgba(0,0,0,0.05);
+overflow:hidden;
+
+}
+
+/* 上キラ */
+
+.left::before,
+.right::before{
+
+content:"";
+
+position:absolute;
+
+top:-80px;
+left:-120px;
+
+width:250px;
+height:200px;
+
+background:
+rgba(255,255,255,0.35);
+
+transform:rotate(25deg);
+
+animation:shine 7s linear infinite;
 
 }
 
@@ -202,7 +254,7 @@ box-shadow:
 
 .left{
 
-width:65%;
+width:64%;
 
 display:flex;
 
@@ -216,7 +268,7 @@ gap:10px;
 
 .right{
 
-width:35%;
+width:36%;
 
 }
 
@@ -224,15 +276,34 @@ width:35%;
 
 .title{
 
-font-size:30px;
+height:64px;
+
+display:flex;
+
+align-items:center;
+justify-content:center;
+
+font-size:34px;
 
 font-weight:900;
 
-color:#d28fa2;
+color:white;
+
+background:
+linear-gradient(
+180deg,
+#ff9db7,
+#ff7fa2
+);
+
+border-radius:999px;
 
 margin-bottom:10px;
 
-text-align:center;
+box-shadow:
+0 6px 14px rgba(255,130,170,0.25);
+
+border:4px solid white;
 
 }
 
@@ -240,9 +311,9 @@ text-align:center;
 
 .rank{
 
-height:88px;
+height:92px;
 
-border-radius:28px;
+border-radius:30px;
 
 display:flex;
 
@@ -252,26 +323,26 @@ justify-content:space-between;
 
 padding:0 22px;
 
-font-size:30px;
+font-size:32px;
 
 font-weight:900;
 
 margin-bottom:12px;
 
-animation:pop 0.4s;
-
 box-shadow:
-0 6px 14px rgba(0,0,0,0.05);
+0 5px 12px rgba(0,0,0,0.05);
 
-border:3px solid rgba(255,255,255,0.8);
-
-transition:0.2s;
+border:4px solid rgba(255,255,255,0.9);
 
 position:relative;
 
 overflow:hidden;
 
+animation:pop 0.4s;
+
 }
+
+/* キラ */
 
 .rank::after{
 
@@ -289,30 +360,24 @@ background:
 linear-gradient(
 120deg,
 transparent,
-rgba(255,255,255,0.35),
+rgba(255,255,255,0.4),
 transparent
 );
 
 transform:translateX(-100%);
 
-animation:shine2 4s infinite;
+animation:shine2 5s infinite;
 
 }
 
-.rank:hover{
-
-transform:scale(1.01);
-
-}
-
-/* TOP3 */
+/* 色 */
 
 .gold{
 background:
 linear-gradient(
 135deg,
-#fff7ba,
-#ffe58f
+#fff7c0,
+#ffe68f
 );
 }
 
@@ -320,8 +385,8 @@ linear-gradient(
 background:
 linear-gradient(
 135deg,
-#f5f5f5,
-#e5e5e5
+#f7f7f7,
+#e7e7e7
 );
 }
 
@@ -329,8 +394,8 @@ linear-gradient(
 background:
 linear-gradient(
 135deg,
-#ffe2cf,
-#ffd2b5
+#ffe6d6,
+#ffd0b4
 );
 }
 
@@ -338,8 +403,8 @@ linear-gradient(
 background:
 linear-gradient(
 135deg,
-#fff8fb,
-#fff3f8
+#fffafd,
+#fff3f7
 );
 }
 
@@ -359,8 +424,8 @@ gap:16px;
 
 .medal{
 
-width:58px;
-height:58px;
+width:60px;
+height:60px;
 
 border-radius:999px;
 
@@ -371,35 +436,40 @@ display:flex;
 align-items:center;
 justify-content:center;
 
-font-size:26px;
+font-size:28px;
 
 box-shadow:
 0 4px 10px rgba(0,0,0,0.08);
 
-border:3px solid rgba(255,255,255,0.8);
+border:3px solid rgba(255,255,255,0.9);
 
 }
 
-/* 票数 */
+/* 票 */
 
 .vote{
 
+background:
+linear-gradient(
+180deg,
+#ff9db7,
+#ff7fa2
+);
+
 color:white;
 
-background:#d28fa2;
-
-padding:10px 18px;
+padding:10px 20px;
 
 border-radius:999px;
 
 font-size:24px;
 
 box-shadow:
-0 4px 10px rgba(210,143,162,0.25);
+0 4px 10px rgba(255,130,170,0.22);
 
 }
 
-/* 6-10 */
+/* 右 */
 
 .grid{
 
@@ -412,20 +482,22 @@ gap:12px;
 
 }
 
-/* 下位カード */
+/* 小カード */
 
 .small{
 
-height:124px;
+height:138px;
 
-border-radius:26px;
+border-radius:28px;
 
 background:
 linear-gradient(
 180deg,
-#fffafd,
+#fffdfd,
 #fff5f8
 );
+
+border:4px solid #ffe3ec;
 
 display:flex;
 
@@ -434,16 +506,12 @@ flex-direction:column;
 align-items:center;
 justify-content:center;
 
-font-weight:900;
-
-border:3px solid #f3e3eb;
+position:relative;
 
 box-shadow:
-0 4px 12px rgba(0,0,0,0.05);
+0 5px 12px rgba(0,0,0,0.04);
 
-transition:0.2s;
-
-position:relative;
+animation:pop 0.4s;
 
 overflow:hidden;
 
@@ -456,17 +524,11 @@ content:"🐾";
 position:absolute;
 
 right:10px;
-bottom:6px;
+bottom:4px;
 
-font-size:26px;
+font-size:28px;
 
 opacity:0.12;
-
-}
-
-.small:hover{
-
-transform:scale(1.03);
 
 }
 
@@ -476,15 +538,17 @@ transform:scale(1.03);
 
 margin-top:14px;
 
-font-size:15px;
-
 text-align:center;
 
-opacity:0.6;
+font-size:16px;
+
+opacity:0.65;
+
+font-weight:700;
 
 }
 
-/* 切り替え画像 */
+/* 画像切り替え */
 
 #imageScreen{
 
@@ -539,7 +603,7 @@ rotate(25deg);
 
 100%{
 transform:
-translateX(1500px)
+translateX(1600px)
 rotate(25deg);
 }
 
@@ -557,6 +621,38 @@ transform:translateX(120%);
 
 100%{
 transform:translateX(120%);
+}
+
+}
+
+@keyframes floatLogo{
+
+0%{
+transform:translateY(0px);
+}
+
+50%{
+transform:translateY(-6px);
+}
+
+100%{
+transform:translateY(0px);
+}
+
+}
+
+@keyframes floatDog{
+
+0%{
+transform:translateY(0px);
+}
+
+50%{
+transform:translateY(-5px);
+}
+
+100%{
+transform:translateY(0px);
 }
 
 }
@@ -590,38 +686,50 @@ src="event.jpg">
 
 </div>
 
-<!-- メイン -->
+<!-- 全体 -->
 
 <div class="wrapper">
 
+<!-- ヘッダー -->
+
 <div class="header">
+
+<img
+src="dog_left.png"
+class="dog left">
 
 <img
 src="logo.png"
 class="logo">
 
+<img
+src="dog_right.png"
+class="dog right">
+
 </div>
+
+<!-- メイン -->
 
 <div class="main">
 
-<!-- TOP5 -->
+<!-- 左 -->
 
 <div class="left">
 
 <div class="title">
-🏆 TOP 5
+🏆 TOP 5 🏆
 </div>
 
 <div id="top5"></div>
 
 </div>
 
-<!-- 6-10 -->
+<!-- 右 -->
 
 <div class="right">
 
 <div class="title">
-🐾 6〜10位
+🐾 6〜10位 🐾
 </div>
 
 <div class="grid"
@@ -735,15 +843,17 @@ top10.innerHTML += `
 <div class="small">
 
 <div style="
-font-size:18px;
-color:#b78c98;
+font-size:24px;
+color:#ff7fa2;
+margin-bottom:6px;
 ">
 ${i+1}位
 </div>
 
 <div style="
-font-size:24px;
-margin:6px 0;
+font-size:30px;
+font-weight:900;
+margin-bottom:8px;
 ">
 
 ${dog.name}
@@ -752,7 +862,8 @@ ${dog.name}
 
 <div style="
 font-size:24px;
-color:#d28fa2;
+color:#ff7fa2;
+font-weight:900;
 ">
 
 ${dog.votes}票
@@ -780,12 +891,10 @@ loadRanking,
 10000
 );
 
-/* 音楽 */
+/* BGM */
 
 const bgm =
 document.getElementById("bgm");
-
-/* 固定音量 */
 
 bgm.volume = 0.01;
 

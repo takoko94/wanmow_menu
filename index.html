@@ -16,8 +16,11 @@ content="width=device-width,initial-scale=1.0">
 
 @font-face{
 font-family:'Yasashisa';
-src:url('YasashisaGothicBold-V2.otf')
+src:
+url('./YasashisaGothicBold-V2.otf')
 format('opentype');
+font-weight:normal;
+font-style:normal;
 }
 
 *{
@@ -26,14 +29,30 @@ padding:0;
 box-sizing:border-box;
 }
 
+html,
+body,
+div,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+button{
+
+font-family:
+'Yasashisa',
+sans-serif !important;
+
+}
+
 body{
 
 width:1280px;
 height:720px;
 
 overflow:hidden;
-
-font-family:'Yasashisa',sans-serif;
 
 background:
 linear-gradient(
@@ -126,7 +145,7 @@ z-index:2;
 
 .header{
 
-height:170px;
+height:190px;
 
 position:relative;
 
@@ -135,15 +154,19 @@ display:flex;
 align-items:center;
 justify-content:center;
 
+padding-top:8px;
+
 }
 
 /* ロゴ */
 
 .logo{
 
-max-width:760px;
+width:900px;
 
-max-height:160px;
+max-width:92%;
+
+max-height:170px;
 
 object-fit:contain;
 
@@ -153,40 +176,9 @@ drop-shadow(
 rgba(0,0,0,0.12)
 );
 
-animation:floatLogo 3s ease-in-out infinite;
-
-z-index:3;
-
-}
-
-/* わんこ */
-
-.dog{
-
-position:absolute;
-
-bottom:0;
-
-width:170px;
-
 animation:
-floatDog 2.8s ease-in-out infinite;
+floatLogo 3s ease-in-out infinite;
 
-filter:
-drop-shadow(
-0 6px 10px
-rgba(0,0,0,0.08)
-);
-
-}
-
-.dog.left{
-left:20px;
-}
-
-.dog.right{
-right:20px;
-animation-delay:1s;
 }
 
 /* メイン */
@@ -641,22 +633,6 @@ transform:translateY(0px);
 
 }
 
-@keyframes floatDog{
-
-0%{
-transform:translateY(0px);
-}
-
-50%{
-transform:translateY(-5px);
-}
-
-100%{
-transform:translateY(0px);
-}
-
-}
-
 </style>
 
 </head>
@@ -695,16 +671,8 @@ src="event.jpg">
 <div class="header">
 
 <img
-src="dog_left.png"
-class="dog left">
-
-<img
 src="logo.png"
 class="logo">
-
-<img
-src="dog_right.png"
-class="dog right">
 
 </div>
 

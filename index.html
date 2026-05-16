@@ -14,7 +14,7 @@ content="width=device-width,initial-scale=1.0">
 
 <style>
 
-/* フォント */
+/* ===== フォント ===== */
 
 @font-face{
 font-family:'Yasashisa';
@@ -27,24 +27,6 @@ padding:0;
 box-sizing:border-box;
 }
 
-html,
-body,
-div,
-span,
-h1,
-h2,
-h3,
-h4,
-h5,
-p,
-button{
-
-font-family:
-'Yasashisa',
-sans-serif !important;
-
-}
-
 body{
 
 width:1280px;
@@ -52,22 +34,19 @@ height:720px;
 
 overflow:hidden;
 
-font-family:'Yasashisa' !important;
+font-family:'Yasashisa',sans-serif;
 
-background:
-linear-gradient(
-180deg,
-#fff9fb 0%,
-#fff4f7 100%
-);
+background:#fffaf5;
+
+color:#5c4b42;
 
 position:relative;
 
-color:#6a4a43;
+user-select:none;
 
 }
 
-/* 背景 */
+/* ===== 背景 ===== */
 
 body::before{
 
@@ -81,55 +60,55 @@ background:
 
 radial-gradient(
 circle at 10% 20%,
-rgba(255,192,203,0.25),
+rgba(255,230,220,0.7),
 transparent 18%
 ),
 
 radial-gradient(
-circle at 85% 25%,
-rgba(255,220,230,0.3),
-transparent 16%
+circle at 85% 20%,
+rgba(255,240,235,0.8),
+transparent 18%
 ),
 
 radial-gradient(
 circle at 50% 90%,
-rgba(255,210,220,0.25),
-transparent 18%
+rgba(250,220,220,0.7),
+transparent 20%
 );
 
 pointer-events:none;
 
 }
 
-/* 肉球 */
+/* ===== 肉球 ===== */
 
 body::after{
 
-content:"🐾 🦴 🐾 💖 🐾";
+content:"🐾 🐾 🦴 🐾 💖";
 
 position:absolute;
 
-top:16px;
-left:20px;
+top:20px;
+left:30px;
 
-font-size:80px;
+font-size:70px;
+
+letter-spacing:40px;
 
 opacity:0.05;
-
-letter-spacing:50px;
 
 pointer-events:none;
 
 }
 
-/* 全体 */
+/* ===== 全体 ===== */
 
 .wrapper{
 
 width:1280px;
 height:720px;
 
-padding:14px;
+padding:12px;
 
 display:flex;
 flex-direction:column;
@@ -139,55 +118,114 @@ gap:10px;
 position:relative;
 z-index:2;
 
-overflow:hidden;
-
 transition:opacity 1s;
+
+overflow:hidden;
 
 }
 
-/* ヘッダー */
+/* ===== 上バー ===== */
 
-.header{
+.topbar{
 
-height:140px;
+height:70px;
 
-position:relative;
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+}
+
+/* ===== LIVE ===== */
+
+.live{
+
+height:52px;
+
+padding:0 20px;
 
 display:flex;
 
 align-items:center;
 justify-content:center;
 
-padding-top:0;
+border-radius:999px;
+
+background:#cfa18d;
+
+color:white;
+
+font-size:24px;
+
+font-weight:900;
+
+box-shadow:
+0 4px 0 rgba(0,0,0,0.15);
 
 flex-shrink:0;
 
 }
 
-/* ロゴ */
+/* ===== テロップ ===== */
 
-.logo{
+.telop{
 
-width:720px;
+height:52px;
 
-max-width:88%;
+flex:1;
 
-max-height:120px;
+border-radius:999px;
 
-object-fit:contain;
+background:white;
 
-filter:
-drop-shadow(
-0 8px 18px
-rgba(0,0,0,0.12)
-);
+border:3px solid #e8dcd2;
 
-animation:
-floatLogo 3s ease-in-out infinite;
+display:flex;
+
+align-items:center;
+
+padding:0 22px;
+
+font-size:22px;
+
+font-weight:900;
+
+color:#b88472;
+
+box-shadow:
+0 4px 0 rgba(0,0,0,0.08);
+
+overflow:hidden;
+
+white-space:nowrap;
 
 }
 
-/* メイン */
+/* ===== ロゴ ===== */
+
+.top-logo{
+
+height:56px;
+
+width:auto;
+
+object-fit:contain;
+
+margin-left:auto;
+
+filter:
+drop-shadow(
+0 4px 10px
+rgba(0,0,0,0.08)
+);
+
+animation:floatLogo 3s ease-in-out infinite;
+
+}
+
+/* ===== メイン ===== */
 
 .main{
 
@@ -195,30 +233,54 @@ flex:1;
 
 display:flex;
 
-gap:18px;
+gap:14px;
 
 min-height:0;
 
 }
 
-/* 左右 */
+/* ===== 左 ===== */
 
-.left,
+.left{
+
+width:68%;
+
+display:flex;
+
+flex-direction:column;
+
+gap:12px;
+
+}
+
+/* ===== 右 ===== */
+
 .right{
 
-background:
-rgba(255,255,255,0.82);
+width:32%;
 
-backdrop-filter:blur(10px);
+display:flex;
 
-border-radius:36px;
+flex-direction:column;
 
-border:4px solid #ffe1ea;
+gap:12px;
+
+}
+
+/* ===== 共通BOX ===== */
+
+.panel{
+
+background:#fffdfb;
+
+border-radius:28px;
+
+border:3px solid #e8dcd2;
+
+padding:14px;
 
 box-shadow:
-0 10px 25px rgba(255,170,190,0.12);
-
-padding:16px;
+0 5px 0 rgba(0,0,0,0.08);
 
 position:relative;
 
@@ -226,189 +288,206 @@ overflow:hidden;
 
 }
 
-/* 上キラ */
-
-.left::before,
-.right::before{
-
-content:"";
-
-position:absolute;
-
-top:-80px;
-left:-120px;
-
-width:250px;
-height:200px;
-
-background:
-rgba(255,255,255,0.35);
-
-transform:rotate(25deg);
-
-animation:shine 7s linear infinite;
-
-}
-
-/* 左 */
-
-.left{
-
-width:64%;
-
-display:flex;
-
-flex-direction:column;
-
-gap:8px;
-
-}
-
-/* 右 */
-
-.right{
-
-width:36%;
-
-}
-
-/* 見出し */
+/* ===== タイトル ===== */
 
 .title{
 
-height:56px;
+height:52px;
 
 display:flex;
 
 align-items:center;
 justify-content:center;
 
-font-size:30px;
-
-font-weight:900;
-
-color:white;
-
-background:
-linear-gradient(
-180deg,
-#ff9db7,
-#ff7fa2
-);
+background:#f3ebe5;
 
 border-radius:999px;
-
-margin-bottom:8px;
-
-box-shadow:
-0 6px 14px rgba(255,130,170,0.25);
-
-border:4px solid white;
-
-}
-
-/* ランク */
-
-.rank{
-
-height:78px;
-
-border-radius:30px;
-
-display:flex;
-
-align-items:center;
-
-justify-content:space-between;
-
-padding:0 20px;
 
 font-size:28px;
 
 font-weight:900;
 
-margin-bottom:10px;
+color:#8f6d61;
 
-box-shadow:
-0 5px 12px rgba(0,0,0,0.05);
+margin-bottom:12px;
 
-border:4px solid rgba(255,255,255,0.9);
+border:3px solid #e8dcd2;
+
+}
+
+/* ===== TOP3 ===== */
+
+.podium{
+
+display:flex;
+
+align-items:flex-end;
+
+justify-content:center;
+
+gap:14px;
+
+height:250px;
+
+padding-top:8px;
+
+}
+
+/* 共通 */
+
+.podium-card{
+
+width:185px;
+
+border-radius:28px;
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+justify-content:center;
 
 position:relative;
 
-overflow:hidden;
+border:3px solid rgba(255,255,255,0.9);
 
-animation:pop 0.4s;
+box-shadow:
+0 5px 0 rgba(0,0,0,0.08);
+
+font-weight:900;
 
 }
 
-/* キラ */
+/* 1位 */
 
-.rank::after{
+.first{
 
-content:"";
-
-position:absolute;
-
-top:0;
-left:0;
-
-width:100%;
-height:100%;
+height:235px;
 
 background:
 linear-gradient(
-120deg,
-transparent,
-rgba(255,255,255,0.4),
-transparent
+180deg,
+#fff1ae,
+#ffe184
 );
 
-transform:translateX(-100%);
-
-animation:shine2 5s infinite;
-
 }
 
-/* 色 */
+/* 2位 */
 
-.gold{
+.second{
+
+height:185px;
+
 background:
 linear-gradient(
-135deg,
-#fff7c0,
-#ffe68f
-);
-}
-
-.silver{
-background:
-linear-gradient(
-135deg,
+180deg,
 #f7f7f7,
 #e7e7e7
 );
+
 }
 
-.bronze{
+/* 3位 */
+
+.third{
+
+height:165px;
+
 background:
 linear-gradient(
-135deg,
-#ffe6d6,
-#ffd0b4
+180deg,
+#ffe2d4,
+#ffd1bb
 );
+
 }
 
-.normal{
-background:
-linear-gradient(
-135deg,
-#fffafd,
-#fff3f7
-);
+/* 順位 */
+
+.podium-rank{
+
+font-size:34px;
+
+margin-bottom:10px;
+
 }
 
-/* 左側 */
+/* 名前 */
+
+.podium-name{
+
+font-size:34px;
+
+margin-bottom:12px;
+
+color:#6b5248;
+
+text-align:center;
+
+}
+
+/* 票 */
+
+.podium-vote{
+
+background:#cfa18d;
+
+color:white;
+
+padding:10px 18px;
+
+border-radius:999px;
+
+font-size:24px;
+
+box-shadow:
+0 4px 0 rgba(0,0,0,0.12);
+
+}
+
+/* ===== ランク一覧 ===== */
+
+.rank-list{
+
+display:flex;
+
+flex-direction:column;
+
+gap:10px;
+
+}
+
+/* ===== ランク ===== */
+
+.rank{
+
+height:68px;
+
+display:flex;
+
+align-items:center;
+justify-content:space-between;
+
+padding:0 16px;
+
+border-radius:22px;
+
+background:white;
+
+border:3px solid #e8dcd2;
+
+box-shadow:
+0 4px 0 rgba(0,0,0,0.08);
+
+font-size:26px;
+
+font-weight:900;
+
+}
+
+/* 左 */
 
 .rank-left{
 
@@ -416,32 +495,29 @@ display:flex;
 
 align-items:center;
 
-gap:14px;
+gap:12px;
 
 }
 
-/* メダル */
+/* 順位 */
 
-.medal{
+.rank-num{
 
-width:54px;
-height:54px;
-
-border-radius:999px;
-
-background:white;
+width:44px;
+height:44px;
 
 display:flex;
 
 align-items:center;
 justify-content:center;
 
-font-size:24px;
+border-radius:999px;
 
-box-shadow:
-0 4px 10px rgba(0,0,0,0.08);
+background:#f3ebe5;
 
-border:3px solid rgba(255,255,255,0.9);
+border:3px solid #e8dcd2;
+
+font-size:20px;
 
 }
 
@@ -449,27 +525,22 @@ border:3px solid rgba(255,255,255,0.9);
 
 .vote{
 
-background:
-linear-gradient(
-180deg,
-#ff9db7,
-#ff7fa2
-);
+background:#cfa18d;
 
 color:white;
 
-padding:8px 18px;
+padding:6px 14px;
 
 border-radius:999px;
 
-font-size:22px;
+font-size:20px;
 
 box-shadow:
-0 4px 10px rgba(255,130,170,0.22);
+0 4px 0 rgba(0,0,0,0.12);
 
 }
 
-/* 右 */
+/* ===== 右グリッド ===== */
 
 .grid{
 
@@ -482,22 +553,11 @@ gap:10px;
 
 }
 
-/* 小カード */
+/* ===== 小カード ===== */
 
 .small{
 
-height:118px;
-
-border-radius:28px;
-
-background:
-linear-gradient(
-180deg,
-#fffdfd,
-#fff5f8
-);
-
-border:4px solid #ffe3ec;
+height:110px;
 
 display:flex;
 
@@ -506,49 +566,89 @@ flex-direction:column;
 align-items:center;
 justify-content:center;
 
-position:relative;
+border-radius:22px;
+
+background:white;
+
+border:3px solid #e8dcd2;
 
 box-shadow:
-0 5px 12px rgba(0,0,0,0.04);
+0 4px 0 rgba(0,0,0,0.08);
 
-animation:pop 0.4s;
-
-overflow:hidden;
+position:relative;
 
 }
 
-.small::after{
+/* リボン */
 
-content:"🐾";
+.small::before{
+
+content:"🎀";
 
 position:absolute;
 
-right:10px;
-bottom:4px;
+top:6px;
+left:8px;
+
+font-size:18px;
+
+opacity:0.7;
+
+}
+
+/* 順位 */
+
+.small-rank{
+
+font-size:18px;
+
+color:#b88472;
+
+margin-bottom:4px;
+
+}
+
+/* 名前 */
+
+.small-name{
 
 font-size:24px;
 
-opacity:0.12;
+font-weight:900;
 
-}
-
-/* 更新 */
-
-.update{
-
-margin-top:10px;
+margin-bottom:6px;
 
 text-align:center;
 
-font-size:14px;
+}
 
-opacity:0.65;
+/* 票 */
 
-font-weight:700;
+.small-vote{
+
+font-size:20px;
+
+font-weight:900;
+
+color:#b88472;
 
 }
 
-/* 画像切り替え */
+/* ===== 更新 ===== */
+
+.update{
+
+text-align:right;
+
+font-size:13px;
+
+opacity:0.65;
+
+margin-top:2px;
+
+}
+
+/* ===== 画像 ===== */
 
 #imageScreen{
 
@@ -565,12 +665,7 @@ height:720px;
 
 z-index:999;
 
-background:
-linear-gradient(
-180deg,
-#ffdbe7,
-#fff4f7
-);
+background:#fffaf5;
 
 transition:opacity 1s;
 
@@ -589,53 +684,7 @@ display:block;
 
 }
 
-/* アニメ */
-
-@keyframes pop{
-
-0%{
-transform:scale(0.95);
-opacity:0;
-}
-
-100%{
-transform:scale(1);
-opacity:1;
-}
-
-}
-
-@keyframes shine{
-
-0%{
-transform:
-translateX(0)
-rotate(25deg);
-}
-
-100%{
-transform:
-translateX(1600px)
-rotate(25deg);
-}
-
-}
-
-@keyframes shine2{
-
-0%{
-transform:translateX(-100%);
-}
-
-40%{
-transform:translateX(120%);
-}
-
-100%{
-transform:translateX(120%);
-}
-
-}
+/* ===== アニメ ===== */
 
 @keyframes floatLogo{
 
@@ -644,7 +693,7 @@ transform:translateY(0px);
 }
 
 50%{
-transform:translateY(-6px);
+transform:translateY(-4px);
 }
 
 100%{
@@ -673,7 +722,7 @@ type="audio/mpeg">
 
 </audio>
 
-<!-- 切り替え画像 -->
+<!-- 画像切替 -->
 
 <div id="imageScreen">
 
@@ -686,13 +735,23 @@ src="event.jpg">
 
 <div class="wrapper">
 
-<!-- ヘッダー -->
+<!-- 上 -->
 
-<div class="header">
+<div class="topbar">
+
+<div class="live">
+LIVE
+</div>
+
+<div class="telop">
+
+✨ 投票受付中！あなたの推し犬を応援しよう！ ✨
+
+</div>
 
 <img
 src="logo.png"
-class="logo">
+class="top-logo">
 
 </div>
 
@@ -704,11 +763,31 @@ class="logo">
 
 <div class="left">
 
+<!-- TOP3 -->
+
+<div class="panel">
+
 <div class="title">
-🏆 TOP 5 🏆
+🏆 TOP3 🏆
 </div>
 
-<div id="top5"></div>
+<div id="podium"></div>
+
+</div>
+
+<!-- 4位5位 -->
+
+<div class="panel" style="flex:1;">
+
+<div class="title">
+4位〜5位
+</div>
+
+<div class="rank-list"
+id="top5">
+</div>
+
+</div>
 
 </div>
 
@@ -716,12 +795,16 @@ class="logo">
 
 <div class="right">
 
+<div class="panel" style="flex:1;">
+
 <div class="title">
-🐾 6〜10位 🐾
+6〜10位
 </div>
 
 <div class="grid"
 id="top10">
+</div>
+
 </div>
 
 <div class="update"
@@ -737,12 +820,12 @@ id="update">
 
 <script>
 
-/* GAS URL */
+/* ===== GAS ===== */
 
 const API_URL =
 "https://script.google.com/macros/s/AKfycby7mjB5m4pMi63DHtdYOgfEZaQ7TJyAi3mOfndk7WHXyWDsvHeqFFCfdHI6BvjQQoNz6g/exec";
 
-/* ランキング取得 */
+/* ===== ランキング ===== */
 
 async function loadRanking(){
 
@@ -771,9 +854,12 @@ console.log(e);
 
 }
 
-/* 描画 */
+/* ===== 描画 ===== */
 
 function drawRanking(ranking){
+
+const podium =
+document.getElementById("podium");
 
 const top5 =
 document.getElementById("top5");
@@ -781,33 +867,82 @@ document.getElementById("top5");
 const top10 =
 document.getElementById("top10");
 
+podium.innerHTML = "";
 top5.innerHTML = "";
 top10.innerHTML = "";
 
+if(ranking.length >= 3){
+
+podium.innerHTML = `
+
+<div class="podium">
+
+<div class="podium-card second">
+
+<div class="podium-rank">
+🥈
+</div>
+
+<div class="podium-name">
+${ranking[1].name}
+</div>
+
+<div class="podium-vote">
+${ranking[1].votes}票
+</div>
+
+</div>
+
+<div class="podium-card first">
+
+<div class="podium-rank">
+👑
+</div>
+
+<div class="podium-name">
+${ranking[0].name}
+</div>
+
+<div class="podium-vote">
+${ranking[0].votes}票
+</div>
+
+</div>
+
+<div class="podium-card third">
+
+<div class="podium-rank">
+🥉
+</div>
+
+<div class="podium-name">
+${ranking[2].name}
+</div>
+
+<div class="podium-vote">
+${ranking[2].votes}票
+</div>
+
+</div>
+
+</div>
+
+`;
+
+}
+
 ranking.forEach((dog,i)=>{
 
-let cls = "normal";
-
-if(i==0) cls="gold";
-else if(i==1) cls="silver";
-else if(i==2) cls="bronze";
-
-const medal =
-i==0 ? "🥇" :
-i==1 ? "🥈" :
-i==2 ? "🥉" :
-(i+1)+"位";
-
-if(i < 5){
+if(i >= 3 && i < 5){
 
 top5.innerHTML += `
 
-<div class="rank ${cls}">
+<div class="rank">
 
 <div class="rank-left">
 
-<div class="medal">
-${medal}
+<div class="rank-num">
+${i+1}
 </div>
 
 <div>
@@ -824,39 +959,24 @@ ${dog.votes}票
 
 `;
 
-}else if(i < 10){
+}
+
+if(i >= 5 && i < 10){
 
 top10.innerHTML += `
 
 <div class="small">
 
-<div style="
-font-size:20px;
-color:#ff7fa2;
-margin-bottom:4px;
-">
+<div class="small-rank">
 ${i+1}位
 </div>
 
-<div style="
-font-size:26px;
-font-weight:900;
-margin-bottom:6px;
-text-align:center;
-">
-
+<div class="small-name">
 ${dog.name}
-
 </div>
 
-<div style="
-font-size:22px;
-color:#ff7fa2;
-font-weight:900;
-">
-
+<div class="small-vote">
 ${dog.votes}票
-
 </div>
 
 </div>
@@ -869,25 +989,23 @@ ${dog.votes}票
 
 }
 
-/* 初回 */
+/* ===== 初回 ===== */
 
 loadRanking();
 
-/* 自動更新 */
+/* ===== 自動更新 ===== */
 
 setInterval(
 loadRanking,
 10000
 );
 
-/* BGM */
+/* ===== BGM ===== */
 
 const bgm =
 document.getElementById("bgm");
 
 bgm.volume = 0.01;
-
-/* 自動再生 */
 
 window.addEventListener(
 "load",
@@ -907,7 +1025,7 @@ console.log(e);
 
 });
 
-/* 画面切り替え */
+/* ===== 切替 ===== */
 
 const wrapper =
 document.querySelector(

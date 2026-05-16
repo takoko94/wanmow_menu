@@ -108,11 +108,6 @@ display:flex;
 align-items:center;
 justify-content:center;
 
-font-size:44px;
-font-weight:900;
-
-color:#d28fa2;
-
 border:4px solid #f3dfe6;
 
 box-shadow:
@@ -121,6 +116,29 @@ box-shadow:
 position:relative;
 
 overflow:hidden;
+
+}
+
+/* ロゴ */
+
+.logo{
+
+max-width:95%;
+
+max-height:72px;
+
+object-fit:contain;
+
+filter:
+drop-shadow(
+0 4px 8px
+rgba(0,0,0,0.08)
+);
+
+animation:pop 0.5s;
+
+position:relative;
+z-index:2;
 
 }
 
@@ -577,7 +595,11 @@ src="event.jpg">
 <div class="wrapper">
 
 <div class="header">
-🐶 わんも〜推し犬総選挙 🐶
+
+<img
+src="logo.png"
+class="logo">
+
 </div>
 
 <div class="main">

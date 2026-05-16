@@ -122,6 +122,45 @@ pointer-events:none;
 
 }
 
+/* 更新時刻 */
+
+.update{
+
+position:absolute;
+
+top:18px;
+right:24px;
+
+text-align:right;
+
+font-size:13px;
+
+opacity:0.72;
+
+font-weight:900;
+
+z-index:20;
+
+background:
+rgba(255,255,255,0.75);
+
+padding:
+8px 14px;
+
+border-radius:
+999px;
+
+border:
+3px solid #ffe3ec;
+
+box-shadow:
+0 4px 10px rgba(255,170,190,0.12);
+
+backdrop-filter:
+blur(6px);
+
+}
+
 /* 全体 */
 
 .wrapper{
@@ -168,11 +207,11 @@ flex-shrink:0;
 
 .logo{
 
-width:860px;
+width:940px;
 
-max-width:94%;
+max-width:96%;
 
-max-height:130px;
+max-height:140px;
 
 object-fit:contain;
 
@@ -641,22 +680,6 @@ opacity:0.12;
 
 }
 
-/* 更新 */
-
-.update{
-
-margin-top:4px;
-
-text-align:center;
-
-font-size:12px;
-
-opacity:0.65;
-
-font-weight:700;
-
-}
-
 /* 画像切り替え */
 
 #imageScreen{
@@ -782,6 +805,13 @@ type="audio/mpeg">
 
 </audio>
 
+<!-- 更新 -->
+
+<div class="update"
+id="update">
+更新中...
+</div>
+
 <!-- 切り替え画像 -->
 
 <div id="imageScreen">
@@ -831,11 +861,6 @@ class="logo">
 
 <div class="grid"
 id="top10">
-</div>
-
-<div class="update"
-id="update">
-更新中...
 </div>
 
 </div>

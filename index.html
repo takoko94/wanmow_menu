@@ -376,7 +376,7 @@ loop
 muted>
 
 <source
-src="bgm.mp3?v=200"
+src="bgm.mp3?v=500"
 type="audio/mpeg">
 
 </audio>
@@ -388,7 +388,7 @@ class="screen"
 id="menuScreen">
 
 <img
-src="menu2.jpg?v=200"
+src="menu2.jpg?v=500"
 class="menuImage">
 
 </div>
@@ -400,7 +400,7 @@ class="screen"
 id="dogScreen">
 
 <img
-src="logo.png?v=200"
+src="logo.png?v=500"
 class="logo">
 
 <div class="note">
@@ -542,8 +542,6 @@ colors[
 i % colors.length
 ];
 
-/* ← ここ修正済み */
-
 div.innerHTML =
 "🐶 " + dog.name;
 
@@ -563,7 +561,7 @@ console.log(e);
 
 loadDogs();
 
-/* 更新 */
+/* 30秒更新 */
 
 setInterval(
 loadDogs,

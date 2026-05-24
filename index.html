@@ -376,7 +376,7 @@ loop
 muted>
 
 <source
-src="bgm.mp3?v=100"
+src="bgm.mp3?v=200"
 type="audio/mpeg">
 
 </audio>
@@ -388,7 +388,7 @@ class="screen"
 id="menuScreen">
 
 <img
-src="menu2.jpg?v=100"
+src="menu2.jpg?v=200"
 class="menuImage">
 
 </div>
@@ -400,7 +400,7 @@ class="screen"
 id="dogScreen">
 
 <img
-src="logo.png?v=100"
+src="logo.png?v=200"
 class="logo">
 
 <div class="note">
@@ -542,8 +542,10 @@ colors[
 i % colors.length
 ];
 
+/* ← ここ修正済み */
+
 div.innerHTML =
-"🐶 " + dog["犬種"];
+"🐶 " + dog.name;
 
 dogScreen.appendChild(div);
 

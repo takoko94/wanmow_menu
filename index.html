@@ -376,7 +376,7 @@ loop
 muted>
 
 <source
-src="bgm.mp3?v=500"
+src="bgm.mp3?v=999"
 type="audio/mpeg">
 
 </audio>
@@ -388,7 +388,7 @@ class="screen"
 id="menuScreen">
 
 <img
-src="menu2.jpg?v=500"
+src="menu2.jpg?v=999"
 class="menuImage">
 
 </div>
@@ -400,7 +400,7 @@ class="screen"
 id="dogScreen">
 
 <img
-src="logo.png?v=500"
+src="logo.png?v=999"
 class="logo">
 
 <div class="note">
@@ -495,6 +495,10 @@ dog =>
 Number(dog["投票人数"]) >= 2
 );
 
+/* 重なり防止 */
+
+const placed = [];
+
 /* 描画 */
 
 filtered.forEach((dog,i)=>{
@@ -504,28 +508,71 @@ document.createElement("div");
 
 div.className = "dog";
 
-/* 真ん中回避 */
+let x;
+let y;
 
-let x =
-Math.random() * 1000 + 40;
+let safe = false;
 
-let y =
-Math.random() * 580 + 40;
+let loop = 0;
 
-while(
+/* 重なり回避 */
+
+while(!safe && loop < 200){
+
+x =
+Math.random() * 980 + 60;
+
+y =
+Math.random() * 560 + 60;
+
+safe = true;
+
+/* 真ん中ロゴ回避 */
+
+if(
 x > 390 &&
 x < 830 &&
 y > 210 &&
 y < 520
 ){
 
-x =
-Math.random() * 1000 + 40;
-
-y =
-Math.random() * 580 + 40;
+safe = false;
 
 }
+
+/* 他犬種回避 */
+
+placed.forEach(pos=>{
+
+const dx =
+x - pos.x;
+
+const dy =
+y - pos.y;
+
+const distance =
+Math.sqrt(
+dx*dx + dy*dy
+);
+
+if(distance < 170){
+
+safe = false;
+
+}
+
+});
+
+loop++;
+
+}
+
+/* 記録 */
+
+placed.push({
+x:x,
+y:y
+});
 
 div.style.left =
 x + "px";
@@ -561,7 +608,7 @@ console.log(e);
 
 loadDogs();
 
-/* 30秒更新 */
+/* 更新 */
 
 setInterval(
 loadDogs,

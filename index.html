@@ -376,7 +376,7 @@ loop
 muted>
 
 <source
-src="bgm.mp3?v=60"
+src="bgm.mp3?v=100"
 type="audio/mpeg">
 
 </audio>
@@ -388,7 +388,7 @@ class="screen"
 id="menuScreen">
 
 <img
-src="menu2.jpg?v=60"
+src="menu2.jpg?v=100"
 class="menuImage">
 
 </div>
@@ -400,11 +400,11 @@ class="screen"
 id="dogScreen">
 
 <img
-src="logo.png?v=60"
+src="logo.png?v=100"
 class="logo">
 
 <div class="note">
-※2人以上から投票されたわんちゃんを掲載しています
+※2票以上投票されたわんちゃんを掲載しています
 </div>
 
 <!-- キラ -->
@@ -487,27 +487,12 @@ document
 .querySelectorAll(".dog")
 .forEach(el=>el.remove());
 
-/*
-
-想定データ
-
-[
- {
-  name:"柴犬",
-  votes:20,
-  people:5
- }
-]
-
-*/
-
-/* 条件 */
+/* 2票以上 */
 
 const filtered =
 data.filter(
 dog =>
-dog.people >= 2 ||
-dog.name === "人面犬牧田ここな"
+dog.votes >= 2
 );
 
 /* 描画 */
@@ -519,7 +504,7 @@ document.createElement("div");
 
 div.className = "dog";
 
-/* 真ん中ロゴ避け */
+/* 真ん中回避 */
 
 let x =
 Math.random() * 1000 + 40;

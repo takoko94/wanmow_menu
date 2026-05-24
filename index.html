@@ -238,26 +238,6 @@ white-space:nowrap;
 
 }
 
-/* キラ */
-
-.sparkle{
-
-position:absolute;
-
-width:14px;
-height:14px;
-
-background:white;
-
-border-radius:50%;
-
-opacity:0.4;
-
-animation:
-sparkle 4s infinite;
-
-}
-
 /* 注釈 */
 
 .note{
@@ -277,6 +257,26 @@ font-weight:900;
 opacity:0.65;
 
 color:#7a5c56;
+
+}
+
+/* キラ */
+
+.sparkle{
+
+position:absolute;
+
+width:14px;
+height:14px;
+
+background:white;
+
+border-radius:50%;
+
+opacity:0.4;
+
+animation:
+sparkle 4s infinite;
 
 }
 
@@ -376,7 +376,7 @@ loop
 muted>
 
 <source
-src="bgm.mp3?v=50"
+src="bgm.mp3?v=60"
 type="audio/mpeg">
 
 </audio>
@@ -388,7 +388,7 @@ class="screen"
 id="menuScreen">
 
 <img
-src="menu2.jpg?v=50"
+src="menu2.jpg?v=60"
 class="menuImage">
 
 </div>
@@ -400,12 +400,45 @@ class="screen"
 id="dogScreen">
 
 <img
-src="logo.png?v=50"
+src="logo.png?v=60"
 class="logo">
 
 <div class="note">
-※2人以上投票されたわんちゃんを掲載しています
+※2人以上から投票されたわんちゃんを掲載しています
 </div>
+
+<!-- キラ -->
+
+<div
+class="sparkle"
+style="
+top:120px;
+left:240px;
+"></div>
+
+<div
+class="sparkle"
+style="
+top:300px;
+right:220px;
+animation-delay:1s;
+"></div>
+
+<div
+class="sparkle"
+style="
+bottom:140px;
+left:480px;
+animation-delay:2s;
+"></div>
+
+<div
+class="sparkle"
+style="
+bottom:220px;
+right:380px;
+animation-delay:3s;
+"></div>
 
 </div>
 
@@ -454,14 +487,30 @@ document
 .querySelectorAll(".dog")
 .forEach(el=>el.remove());
 
-/* 2票以上 */
+/*
+
+想定データ
+
+[
+ {
+  name:"柴犬",
+  votes:20,
+  people:5
+ }
+]
+
+*/
+
+/* 条件 */
 
 const filtered =
 data.filter(
-dog => dog.votes >= 2
+dog =>
+dog.people >= 2 ||
+dog.name === "人面犬牧田ここな"
 );
 
-/* 配置 */
+/* 描画 */
 
 filtered.forEach((dog,i)=>{
 
@@ -470,7 +519,7 @@ document.createElement("div");
 
 div.className = "dog";
 
-/* 中央ロゴ避け */
+/* 真ん中ロゴ避け */
 
 let x =
 Math.random() * 1000 + 40;
@@ -478,12 +527,10 @@ Math.random() * 1000 + 40;
 let y =
 Math.random() * 580 + 40;
 
-/* 真ん中回避 */
-
 while(
-x > 400 &&
-x < 820 &&
-y > 220 &&
+x > 390 &&
+x < 830 &&
+y > 210 &&
 y < 520
 ){
 

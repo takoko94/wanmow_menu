@@ -16,7 +16,7 @@ content="width=device-width,initial-scale=1.0">
 
 @font-face{
 font-family:'Yasashisa';
-src:url('./YasashisaGothicBold-V2.otf');
+src:url('YasashisaGothicBold-V2.otf');
 }
 
 *{
@@ -102,7 +102,7 @@ pointer-events:none;
 
 }
 
-/* 共通 */
+/* 共通画面 */
 
 .screen{
 
@@ -124,20 +124,22 @@ opacity 1s;
 #menuScreen{
 
 opacity:1;
-z-index:2;
 
 display:flex;
 
 align-items:center;
 justify-content:center;
 
+z-index:999;
+
 }
 
-/* わんちゃん画面 */
+/* 犬画面 */
 
 #dogScreen{
 
 opacity:0;
+
 pointer-events:none;
 
 z-index:1;
@@ -147,6 +149,8 @@ z-index:1;
 /* メニュー画像 */
 
 .menuImage{
+
+display:block;
 
 width:1120px;
 
@@ -161,6 +165,9 @@ rgba(255,170,190,0.22);
 
 object-fit:cover;
 
+animation:
+floatMenu 4s ease-in-out infinite;
+
 }
 
 /* ロゴ */
@@ -169,14 +176,14 @@ object-fit:cover;
 
 position:absolute;
 
-top:26px;
+top:24px;
 
 left:50%;
 
 transform:
 translateX(-50%);
 
-width:560px;
+width:540px;
 
 object-fit:contain;
 
@@ -251,7 +258,23 @@ sparkle 4s infinite;
 
 }
 
-/* ロゴ */
+/* アニメ */
+
+@keyframes floatMenu{
+
+0%{
+transform:translateY(0px);
+}
+
+50%{
+transform:translateY(-6px);
+}
+
+100%{
+transform:translateY(0px);
+}
+
+}
 
 @keyframes floatLogo{
 
@@ -275,8 +298,6 @@ translateY(0px);
 
 }
 
-/* 犬 */
-
 @keyframes floatDog{
 
 0%{
@@ -298,8 +319,6 @@ scale(1);
 }
 
 }
-
-/* キラ */
 
 @keyframes sparkle{
 
@@ -335,7 +354,7 @@ loop
 muted>
 
 <source
-src="./bgm.mp3"
+src="bgm.mp3?v=10"
 type="audio/mpeg">
 
 </audio>
@@ -347,7 +366,7 @@ class="screen"
 id="menuScreen">
 
 <img
-src="./menu.jpg"
+src="menu.jpg?v=10"
 class="menuImage">
 
 </div>
@@ -359,7 +378,7 @@ class="screen"
 id="dogScreen">
 
 <img
-src="./logo.png"
+src="logo.png?v=10"
 class="logo">
 
 <div

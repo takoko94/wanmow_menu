@@ -404,7 +404,7 @@ src="logo.png?v=100"
 class="logo">
 
 <div class="note">
-※2票以上投票されたわんちゃんを掲載しています
+※2人以上から投票されたわんちゃんを掲載しています
 </div>
 
 <!-- キラ -->
@@ -487,12 +487,12 @@ document
 .querySelectorAll(".dog")
 .forEach(el=>el.remove());
 
-/* 2票以上 */
+/* 投票人数2人以上 */
 
 const filtered =
 data.filter(
 dog =>
-dog.votes >= 2
+Number(dog["投票人数"]) >= 2
 );
 
 /* 描画 */
@@ -543,7 +543,7 @@ i % colors.length
 ];
 
 div.innerHTML =
-"🐶 " + dog.name;
+"🐶 " + dog["犬種"];
 
 dogScreen.appendChild(div);
 

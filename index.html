@@ -376,7 +376,7 @@ loop
 muted>
 
 <source
-src="bgm.mp3?v=999"
+src="bgm.mp3?v=1200"
 type="audio/mpeg">
 
 </audio>
@@ -388,7 +388,7 @@ class="screen"
 id="menuScreen">
 
 <img
-src="menu2.jpg?v=999"
+src="menu2.jpg?v=1200"
 class="menuImage">
 
 </div>
@@ -400,7 +400,7 @@ class="screen"
 id="dogScreen">
 
 <img
-src="logo.png?v=999"
+src="logo.png?v=1200"
 class="logo">
 
 <div class="note">
@@ -495,7 +495,9 @@ dog =>
 Number(dog["投票人数"]) >= 2
 );
 
-/* 重なり防止 */
+/* =========================
+重なり防止
+========================= */
 
 const placed = [];
 
@@ -515,47 +517,77 @@ let safe = false;
 
 let loop = 0;
 
+/* 文字幅 */
+
+const currentWidth =
+Math.max(
+dog.name.length * 18,
+120
+);
+
+const currentHeight = 58;
+
 /* 重なり回避 */
 
-while(!safe && loop < 200){
+while(!safe && loop < 500){
 
 x =
-Math.random() * 980 + 60;
+Math.random() * 960 + 40;
 
 y =
-Math.random() * 560 + 60;
+Math.random() * 560 + 40;
 
 safe = true;
 
-/* 真ん中ロゴ回避 */
+/* =========================
+ロゴ回避
+========================= */
 
 if(
-x > 390 &&
-x < 830 &&
-y > 210 &&
-y < 520
+x > 360 &&
+x < 900 &&
+y > 200 &&
+y < 540
 ){
 
 safe = false;
 
 }
 
-/* 他犬種回避 */
+/* =========================
+他犬種回避
+========================= */
 
 placed.forEach(pos=>{
 
-const dx =
-x - pos.x;
+const padding = 35;
 
-const dy =
-y - pos.y;
+const overlapX =
 
-const distance =
-Math.sqrt(
-dx*dx + dy*dy
-);
+x <
+(pos.x + pos.width + padding)
 
-if(distance < 170){
+&&
+
+(x + currentWidth + padding)
+>
+pos.x;
+
+const overlapY =
+
+y <
+(pos.y + pos.height + padding)
+
+&&
+
+(y + currentHeight + padding)
+>
+pos.y;
+
+if(
+overlapX &&
+overlapY
+){
 
 safe = false;
 
@@ -570,9 +602,15 @@ loop++;
 /* 記録 */
 
 placed.push({
+
 x:x,
-y:y
+y:y,
+width:currentWidth,
+height:currentHeight
+
 });
+
+/* 反映 */
 
 div.style.left =
 x + "px";

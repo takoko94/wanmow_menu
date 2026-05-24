@@ -14,8 +14,6 @@ content="width=device-width,initial-scale=1.0">
 
 <style>
 
-/* フォント */
-
 @font-face{
 font-family:'Yasashisa';
 src:url('YasashisaGothicBold-V2.otf');
@@ -49,7 +47,7 @@ position:relative;
 
 }
 
-/* 背景キラ */
+/* 背景 */
 
 body::before{
 
@@ -104,7 +102,7 @@ pointer-events:none;
 
 }
 
-/* 共通画面 */
+/* 共通 */
 
 .screen{
 
@@ -116,26 +114,26 @@ left:0;
 width:1280px;
 height:720px;
 
-display:flex;
-
-align-items:center;
-justify-content:center;
-
 transition:
 opacity 1s;
 
 }
 
-/* メニュー画面 */
+/* メニュー */
 
 #menuScreen{
 
 opacity:1;
 z-index:2;
 
+display:flex;
+
+align-items:center;
+justify-content:center;
+
 }
 
-/* わんちゃん画面 */
+/* 犬画面 */
 
 #dogScreen{
 
@@ -146,52 +144,54 @@ z-index:1;
 
 }
 
-/* ロゴ */
-
-.logo{
-
-position:absolute;
-
-top:30px;
-
-left:50%;
-
-transform:
-translateX(-50%);
-
-width:820px;
-
-object-fit:contain;
-
-filter:
-drop-shadow(
-0 12px 24px
-rgba(0,0,0,0.14)
-);
-
-animation:
-floatLogo 3s ease-in-out infinite;
-
-}
-
 /* メニュー画像 */
 
 .menuImage{
 
 width:1120px;
 
-border-radius:40px;
+border-radius:42px;
 
 border:
 6px solid white;
 
 box-shadow:
-0 16px 40px
+0 18px 40px
 rgba(255,170,190,0.22);
 
 }
 
-/* わんちゃん */
+/* ロゴ */
+
+.logo{
+
+position:absolute;
+
+top:24px;
+
+left:50%;
+
+transform:
+translateX(-50%);
+
+width:620px;
+
+object-fit:contain;
+
+filter:
+drop-shadow(
+0 10px 20px
+rgba(0,0,0,0.14)
+);
+
+animation:
+floatLogo 3s ease-in-out infinite;
+
+z-index:10;
+
+}
+
+/* 犬 */
 
 .dog{
 
@@ -203,7 +203,7 @@ padding:
 border-radius:
 999px;
 
-font-size:36px;
+font-size:34px;
 
 font-weight:900;
 
@@ -262,7 +262,7 @@ translateY(0px);
 50%{
 transform:
 translateX(-50%)
-translateY(-8px);
+translateY(-6px);
 }
 
 100%{
@@ -341,10 +341,6 @@ class="screen"
 id="menuScreen">
 
 <img
-src="logo.png"
-class="logo">
-
-<img
 src="menu.jpg"
 class="menuImage">
 
@@ -360,12 +356,10 @@ id="dogScreen">
 src="logo.png"
 class="logo">
 
-<!-- わんちゃん -->
-
 <div
 class="dog"
 style="
-top:150px;
+top:160px;
 left:90px;
 animation-duration:5s;
 background:#fff2f7;
@@ -387,7 +381,7 @@ background:#fff7ea;
 <div
 class="dog"
 style="
-top:140px;
+top:150px;
 right:110px;
 animation-duration:7s;
 background:#eefcff;
@@ -409,7 +403,7 @@ background:#f6f0ff;
 <div
 class="dog"
 style="
-top:470px;
+top:500px;
 left:520px;
 animation-duration:8s;
 background:#fff3ee;
@@ -420,7 +414,7 @@ background:#fff3ee;
 <div
 class="dog"
 style="
-top:350px;
+top:360px;
 right:150px;
 animation-duration:6.5s;
 background:#effff4;
@@ -525,7 +519,7 @@ console.log(e);
 
 });
 
-/* 画面切り替え */
+/* 切り替え */
 
 const menuScreen =
 document.getElementById(

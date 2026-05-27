@@ -6,155 +6,523 @@
 <meta charset="UTF-8">
 
 <meta name="viewport"
-content="width=device-width,initial-scale=1.0">
+content="width=1280,height=720">
 
 <title>
-わんも〜Cafe | wanmowcafe
+わんも〜Cafe
 </title>
 
 <style>
 
 @font-face{
-font-family:'Yasashisa';
-src:url('YasashisaGothicBold-V2.otf');
+  font-family:'PandaBakery';
+  src:url('pandabakery.ttf');
+}
+
+@font-face{
+  font-family:'Yasashisa';
+  src:url('YasashisaGothicBold-V2.otf');
 }
 
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
 body{
+  width:1280px;
+  height:720px;
+  overflow:hidden;
+  position:relative;
+  background:#fff8f1;
+  font-family:'PandaBakery',sans-serif;
+}
 
-width:1280px;
-height:720px;
+/* =========================
+共通画面
+========================= */
 
-overflow:hidden;
+.screen{
+  position:absolute;
+  inset:0;
+  width:1280px;
+  height:720px;
 
-font-family:
-'Yasashisa',
-sans-serif;
-
-background:
-linear-gradient(
-180deg,
-#fff7f3 0%,
-#fff2f6 100%
-);
-
-position:relative;
-
-display:flex;
-align-items:center;
-justify-content:center;
+  transition:
+  opacity 1s ease;
 
 }
 
-/* 背景 */
+/* =========================
+メニュー画面
+========================= */
 
-body::before{
+#menuScreen{
 
-content:"";
+  opacity:1;
+  z-index:10;
 
-position:absolute;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 
-inset:0;
-
-background:
-
-radial-gradient(
-circle at 10% 20%,
-rgba(255,192,203,0.25),
-transparent 18%
-),
-
-radial-gradient(
-circle at 85% 25%,
-rgba(255,220,230,0.3),
-transparent 16%
-),
-
-radial-gradient(
-circle at 50% 90%,
-rgba(255,210,220,0.25),
-transparent 18%
-);
-
-pointer-events:none;
+  background:
+  linear-gradient(
+  180deg,
+  #fff7f3 0%,
+  #fff2f6 100%
+  );
 
 }
 
-/* 肉球 */
+#menuScreen::before{
 
-body::after{
+  content:"";
 
-content:"🐾 🦴 💖 🐾 🧸 🐾";
+  position:absolute;
+  inset:0;
 
-position:absolute;
+  background:
 
-top:16px;
-left:20px;
+  radial-gradient(
+  circle at 10% 20%,
+  rgba(255,192,203,0.25),
+  transparent 18%
+  ),
 
-font-size:80px;
+  radial-gradient(
+  circle at 85% 25%,
+  rgba(255,220,230,0.3),
+  transparent 16%
+  ),
 
-opacity:0.05;
-
-letter-spacing:50px;
-
-pointer-events:none;
+  radial-gradient(
+  circle at 50% 90%,
+  rgba(255,210,220,0.25),
+  transparent 18%
+  );
 
 }
-
-/* メニュー */
 
 .menuWrap{
 
-position:relative;
+  position:relative;
+  z-index:5;
 
-z-index:2;
-
-animation:
-floatMenu 4s ease-in-out infinite;
+  animation:
+  floatMenu 4s ease-in-out infinite;
 
 }
 
 .menuImage{
 
-display:block;
+  display:block;
 
-width:1120px;
+  width:1120px;
 
-border-radius:42px;
+  border-radius:42px;
 
-border:
-6px solid white;
+  border:
+  6px solid white;
 
-box-shadow:
-0 18px 40px
-rgba(255,170,190,0.22);
+  box-shadow:
+  0 18px 40px
+  rgba(255,170,190,0.22);
 
-object-fit:cover;
+  object-fit:cover;
 
+}
+
+/* =========================
+ランキング画面
+========================= */
+
+#rankingScreen{
+
+  opacity:0;
+  z-index:1;
+
+}
+
+/* 背景 */
+
+.bg{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:0;
+}
+
+.overlay{
+  position:absolute;
+  inset:0;
+  background:
+  linear-gradient(
+    rgba(255,255,255,0.08),
+    rgba(255,255,255,0.03)
+  );
+  z-index:1;
+}
+
+/* 上文字 */
+
+.thanks{
+  position:absolute;
+  top:10px;
+  left:0;
+  width:100%;
+
+  text-align:center;
+
+  font-size:24px;
+  line-height:1;
+
+  color:#7a4214;
+
+  z-index:30;
+
+  text-shadow:
+  0 1px 0 rgba(255,255,255,0.95),
+  0 0 8px rgba(255,210,220,0.45);
+}
+
+.result-title{
+  position:absolute;
+  top:34px;
+  left:0;
+  width:100%;
+
+  text-align:center;
+
+  font-size:84px;
+  line-height:1;
+
+  color:#ff7a9f;
+
+  letter-spacing:4px;
+
+  z-index:30;
+
+  text-shadow:
+  0 3px 0 rgba(255,255,255,0.95),
+  0 0 18px rgba(255,255,255,0.9),
+  0 0 35px rgba(255,180,220,0.45);
+}
+
+/* ロゴ */
+
+.top{
+  position:absolute;
+
+  top:18px;
+  left:20px;
+  right:20px;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+
+  z-index:20;
+}
+
+.main-logo{
+  height:118px;
+  object-fit:contain;
+}
+
+.cafe-logo{
+  height:82px;
+  object-fit:contain;
+}
+
+/* 全体 */
+
+.wrapper{
+  position:absolute;
+
+  top:145px;
+  left:20px;
+  right:20px;
+  bottom:10px;
+
+  z-index:5;
+
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+/* TOP3 */
+
+.top3{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+
+.top3 .card{
+  height:320px;
+}
+
+/* 下 */
+
+.bottom7{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:10px;
+}
+
+.bottom7 .card{
+  height:220px;
+}
+
+/* カード */
+
+.card{
+  position:relative;
+
+  border-radius:30px;
+
+  overflow:hidden;
+
+  padding:10px;
+
+  background:
+  linear-gradient(
+    180deg,
+    rgba(255,255,255,0.38),
+    rgba(255,255,255,0.16)
+  );
+
+  border:2px solid rgba(255,255,255,0.45);
+
+  backdrop-filter:blur(10px);
+
+  box-shadow:
+  0 10px 24px rgba(0,0,0,0.16),
+  inset 0 0 18px rgba(255,255,255,0.2);
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+/* TOP3カラー */
+
+.gold{
+  background:
+  linear-gradient(
+    180deg,
+    rgba(255,235,170,0.50),
+    rgba(255,200,70,0.20)
+  );
+}
+
+.silver{
+  background:
+  linear-gradient(
+    180deg,
+    rgba(225,235,255,0.50),
+    rgba(175,195,255,0.20)
+  );
+}
+
+.bronze{
+  background:
+  linear-gradient(
+    180deg,
+    rgba(255,215,180,0.46),
+    rgba(210,130,80,0.18)
+  );
+}
+
+/* 順位 */
+
+.rank{
+  position:absolute;
+
+  top:10px;
+  left:10px;
+
+  padding:6px 12px;
+
+  border-radius:999px;
+
+  background:#7b4718;
+
+  color:white;
+
+  font-size:24px;
+
+  z-index:5;
+}
+
+/* TOP3画像 */
+
+.top3 .photo{
+  width:160px;
+  height:160px;
+
+  object-fit:cover;
+  object-position:center;
+
+  border-radius:50%;
+
+  margin-top:22px;
+  margin-bottom:12px;
+
+  border:5px solid rgba(255,255,255,0.95);
+
+  box-shadow:
+  0 8px 20px rgba(0,0,0,0.2);
+
+  flex-shrink:0;
+}
+
+/* 下画像 */
+
+.bottom7 .photo{
+  width:82px;
+  height:82px;
+
+  object-fit:cover;
+  object-position:center;
+
+  border-radius:50%;
+
+  margin-top:14px;
+  margin-bottom:8px;
+
+  border:4px solid rgba(255,255,255,0.95);
+}
+
+/* TOP3名前 */
+
+.top3 .name{
+  width:100%;
+
+  font-size:48px;
+  line-height:1;
+
+  color:#6b3400;
+
+  text-align:center;
+
+  margin-bottom:10px;
+
+  white-space:nowrap;
+
+  text-shadow:
+  0 2px 0 rgba(255,255,255,0.9),
+  0 0 10px rgba(255,255,255,0.35);
+}
+
+/* 下名前 */
+
+.bottom7 .name{
+  font-size:23px;
+
+  line-height:1.08;
+
+  color:#6b3400;
+
+  text-align:center;
+
+  min-height:60px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  text-shadow:
+  0 1px 0 rgba(255,255,255,0.85);
+}
+
+.small{
+  font-size:18px !important;
+}
+
+/* TOP3票 */
+
+.top3 .vote{
+  width:190px;
+
+  height:52px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  margin-top:-2px;
+
+  font-size:30px;
+
+  line-height:1;
+
+  border-radius:18px;
+
+  background:rgba(255,255,255,0.82);
+
+  color:#ff7b73;
+
+  text-shadow:
+  0 0 10px rgba(255,255,255,0.9);
+
+  box-shadow:
+  0 4px 12px rgba(0,0,0,0.1);
+
+  white-space:nowrap;
+
+  flex-shrink:0;
+}
+
+/* 下票 */
+
+.bottom7 .vote{
+  width:100%;
+  height:42px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:27px;
+
+  border-radius:14px;
+
+  background:rgba(255,255,255,0.78);
+
+  color:#ff92b2;
+
+  text-shadow:
+  0 0 8px rgba(255,255,255,0.9);
+
+  margin-top:auto;
+
+  overflow:hidden;
+  white-space:nowrap;
 }
 
 /* キラ */
 
 .sparkle{
 
-position:absolute;
+  position:absolute;
 
-width:14px;
-height:14px;
+  width:14px;
+  height:14px;
 
-background:white;
+  background:white;
 
-border-radius:50%;
+  border-radius:50%;
 
-opacity:0.4;
+  opacity:0.4;
 
-animation:
-sparkle 4s infinite;
+  animation:
+  sparkle 4s infinite;
 
 }
 
@@ -162,41 +530,40 @@ sparkle 4s infinite;
 
 @keyframes floatMenu{
 
-0%{
-transform:translateY(0px);
-}
+  0%{
+  transform:translateY(0px);
+  }
 
-50%{
-transform:translateY(-6px);
-}
+  50%{
+  transform:translateY(-6px);
+  }
 
-100%{
-transform:translateY(0px);
-}
+  100%{
+  transform:translateY(0px);
+  }
 
 }
 
 @keyframes sparkle{
 
-0%{
-transform:scale(0);
-opacity:0;
-}
+  0%{
+  transform:scale(0);
+  opacity:0;
+  }
 
-50%{
-transform:scale(1);
-opacity:0.45;
-}
+  50%{
+  transform:scale(1);
+  opacity:0.45;
+  }
 
-100%{
-transform:scale(0);
-opacity:0;
-}
+  100%{
+  transform:scale(0);
+  opacity:0;
+  }
 
 }
 
 </style>
-
 </head>
 
 <body>
@@ -210,22 +577,26 @@ loop
 muted>
 
 <source
-src="bgm.mp3?v=4000"
+src="bgm.mp3"
 type="audio/mpeg">
 
 </audio>
 
-<!-- メニュー -->
+<!-- =========================
+メニュー画面
+========================= -->
+
+<div
+class="screen"
+id="menuScreen">
 
 <div class="menuWrap">
 
 <img
-src="menu2.jpg?v=4000"
+src="menu2.jpg"
 class="menuImage">
 
 </div>
-
-<!-- キラ -->
 
 <div
 class="sparkle"
@@ -258,18 +629,128 @@ right:380px;
 animation-delay:3s;
 "></div>
 
+</div>
+
+<!-- =========================
+ランキング画面
+========================= -->
+
+<div
+class="screen"
+id="rankingScreen">
+
+<img src="haikei.png" class="bg">
+<div class="overlay"></div>
+
+<div class="thanks">
+  🐾 たくさんのご投票ありがとうございました！ 🐾
+</div>
+
+<div class="result-title">
+  ＼ 結果発表 ／
+</div>
+
+<div class="top">
+  <img src="wan_logo.png" class="main-logo">
+  <img src="wanmow_logo.png" class="cafe-logo">
+</div>
+
+<div class="wrapper">
+
+  <div class="top3">
+
+    <div class="card gold">
+      <div class="rank">1位</div>
+      <img src="pomeranian.png" class="photo">
+      <div class="name">ポメラニアン</div>
+      <div class="vote">4673票</div>
+    </div>
+
+    <div class="card silver">
+      <div class="rank">2位</div>
+      <img src="husky.png" class="photo">
+      <div class="name">ハスキー</div>
+      <div class="vote">2592票</div>
+    </div>
+
+    <div class="card bronze">
+      <div class="rank">3位</div>
+      <img src="pug.png" class="photo">
+      <div class="name">パグ</div>
+      <div class="vote">1524票</div>
+    </div>
+
+  </div>
+
+  <div class="bottom7">
+
+    <div class="card">
+      <div class="rank">4位</div>
+      <img src="poodle.png" class="photo">
+      <div class="name">プードル</div>
+      <div class="vote">1288票</div>
+    </div>
+
+    <div class="card">
+      <div class="rank">5位</div>
+      <img src="chihuahua.png" class="photo">
+      <div class="name">チワワ</div>
+      <div class="vote">866票</div>
+    </div>
+
+    <div class="card">
+      <div class="rank">6位</div>
+      <img src="dachs.png" class="photo">
+      <div class="name">ダックスフンド</div>
+      <div class="vote">796票</div>
+    </div>
+
+    <div class="card">
+      <div class="rank">7位</div>
+      <img src="schna.png" class="photo">
+      <div class="name">シュナウザー</div>
+      <div class="vote">747票</div>
+    </div>
+
+    <div class="card">
+      <div class="rank">8位</div>
+      <img src="maltipoo.png" class="photo">
+      <div class="name small">
+        マルチーズ＆トイプードル
+      </div>
+      <div class="vote">305票</div>
+    </div>
+
+    <div class="card">
+      <div class="rank">9位</div>
+      <img src="shiba.png" class="photo">
+      <div class="name">柴犬</div>
+      <div class="vote">143票</div>
+    </div>
+
+    <div class="card">
+      <div class="rank">10位</div>
+      <img src="cavalier.png" class="photo">
+      <div class="name">キャバリア</div>
+      <div class="vote">101票</div>
+    </div>
+
+  </div>
+
+</div>
+
+</div>
+
 <script>
 
-/* BGM */
+/* =========================
+BGM
+========================= */
 
 const bgm =
 document.getElementById("bgm");
 
-/* 音量 */
-
 bgm.volume = 0.01;
-
-/* 自動再生 */
 
 window.addEventListener(
 "load",
@@ -288,6 +769,46 @@ console.log(e);
 }
 
 });
+
+/* =========================
+画面切り替え
+========================= */
+
+const menuScreen =
+document.getElementById(
+"menuScreen"
+);
+
+const rankingScreen =
+document.getElementById(
+"rankingScreen"
+);
+
+let showRanking = false;
+
+setInterval(()=>{
+
+showRanking = !showRanking;
+
+if(showRanking){
+
+menuScreen.style.opacity = "0";
+rankingScreen.style.opacity = "1";
+
+menuScreen.style.zIndex = "1";
+rankingScreen.style.zIndex = "10";
+
+}else{
+
+menuScreen.style.opacity = "1";
+rankingScreen.style.opacity = "0";
+
+menuScreen.style.zIndex = "10";
+rankingScreen.style.zIndex = "1";
+
+}
+
+},20000);
 
 </script>
 

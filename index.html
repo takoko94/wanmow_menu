@@ -9,7 +9,7 @@
 content="width=device-width,initial-scale=1.0">
 
 <title>
-わんも〜推し犬総選挙
+わんも〜Cafe | wanmowcafe
 </title>
 
 <style>
@@ -44,6 +44,10 @@ linear-gradient(
 );
 
 position:relative;
+
+display:flex;
+align-items:center;
+justify-content:center;
 
 }
 
@@ -102,51 +106,20 @@ pointer-events:none;
 
 }
 
-/* 共通 */
+/* メニュー画像 */
 
-.screen{
+.menuWrap{
 
-position:absolute;
+position:relative;
 
-top:0;
-left:0;
+z-index:2;
 
-width:1280px;
-height:720px;
-
-transition:
-opacity 1s;
+animation:
+floatMenu 4s ease-in-out infinite;
 
 }
 
 /* メニュー */
-
-#menuScreen{
-
-opacity:1;
-
-display:flex;
-
-align-items:center;
-justify-content:center;
-
-z-index:999;
-
-}
-
-/* 犬画面 */
-
-#dogScreen{
-
-opacity:0;
-
-pointer-events:none;
-
-z-index:1;
-
-}
-
-/* メニュー画像 */
 
 .menuImage{
 
@@ -165,9 +138,6 @@ rgba(255,170,190,0.22);
 
 object-fit:cover;
 
-animation:
-floatMenu 4s ease-in-out infinite;
-
 }
 
 /* ロゴ */
@@ -176,14 +146,10 @@ floatMenu 4s ease-in-out infinite;
 
 position:absolute;
 
-top:50%;
+right:-40px;
+bottom:-40px;
 
-left:50%;
-
-transform:
-translate(-50%,-50%);
-
-width:280px;
+width:260px;
 
 object-fit:contain;
 
@@ -195,68 +161,6 @@ rgba(0,0,0,0.14)
 
 animation:
 floatLogo 3s ease-in-out infinite;
-
-z-index:10;
-
-}
-
-/* 犬種 */
-
-.dog{
-
-position:absolute;
-
-padding:
-10px 18px;
-
-border-radius:
-999px;
-
-font-size:18px;
-
-font-weight:900;
-
-color:#6d4b45;
-
-background:
-rgba(255,255,255,0.72);
-
-backdrop-filter:
-blur(8px);
-
-border:
-3px solid rgba(255,255,255,0.9);
-
-box-shadow:
-0 8px 18px
-rgba(255,170,190,0.16);
-
-animation:
-floatDog linear infinite;
-
-white-space:nowrap;
-
-}
-
-/* 注釈 */
-
-.note{
-
-position:absolute;
-
-bottom:14px;
-
-width:100%;
-
-text-align:center;
-
-font-size:13px;
-
-font-weight:900;
-
-opacity:0.65;
-
-color:#7a5c56;
 
 }
 
@@ -301,43 +205,15 @@ transform:translateY(0px);
 @keyframes floatLogo{
 
 0%{
-transform:
-translate(-50%,-50%)
-translateY(0px);
+transform:translateY(0px);
 }
 
 50%{
-transform:
-translate(-50%,-50%)
-translateY(-6px);
+transform:translateY(-6px);
 }
 
 100%{
-transform:
-translate(-50%,-50%)
-translateY(0px);
-}
-
-}
-
-@keyframes floatDog{
-
-0%{
-transform:
-translateY(0px)
-scale(1);
-}
-
-50%{
-transform:
-translateY(-12px)
-scale(1.03);
-}
-
-100%{
-transform:
-translateY(0px)
-scale(1);
+transform:translateY(0px);
 }
 
 }
@@ -376,35 +252,23 @@ loop
 muted>
 
 <source
-src="bgm.mp3?v=1200"
+src="bgm.mp3?v=2000"
 type="audio/mpeg">
 
 </audio>
 
-<!-- メニュー画面 -->
+<!-- メニュー -->
 
-<div
-class="screen"
-id="menuScreen">
+<div class="menuWrap">
 
 <img
-src="menu2.jpg?v=1200"
+src="menu2.jpg?v=2000"
 class="menuImage">
 
-</div>
-
-<!-- 犬画面 -->
-
-<div
-class="screen"
-id="dogScreen">
-
 <img
-src="logo.png?v=1200"
+src="logo.png?v=2000"
 class="logo">
 
-<div class="note">
-※2人以上から投票されたわんちゃんを掲載しています
 </div>
 
 <!-- キラ -->
@@ -440,223 +304,14 @@ right:380px;
 animation-delay:3s;
 "></div>
 
-</div>
-
 <script>
-
-/* GAS */
-
-const API_URL =
-"https://script.google.com/macros/s/AKfycby7mjB5m4pMi63DHtdYOgfEZaQ7TJyAi3mOfndk7WHXyWDsvHeqFFCfdHI6BvjQQoNz6g/exec";
-
-/* 色 */
-
-const colors = [
-
-"#fff2f7",
-"#fff7ea",
-"#eefcff",
-"#f6f0ff",
-"#fff3ee",
-"#effff4",
-"#fff4fb",
-"#eef8ff"
-
-];
-
-/* 犬種読み込み */
-
-async function loadDogs(){
-
-try{
-
-const res =
-await fetch(API_URL);
-
-const data =
-await res.json();
-
-const dogScreen =
-document.getElementById(
-"dogScreen"
-);
-
-/* 前回削除 */
-
-document
-.querySelectorAll(".dog")
-.forEach(el=>el.remove());
-
-/* 投票人数2人以上 */
-
-const filtered =
-data.filter(
-dog =>
-Number(dog["投票人数"]) >= 2
-);
-
-/* =========================
-重なり防止
-========================= */
-
-const placed = [];
-
-/* 描画 */
-
-filtered.forEach((dog,i)=>{
-
-const div =
-document.createElement("div");
-
-div.className = "dog";
-
-let x;
-let y;
-
-let safe = false;
-
-let loop = 0;
-
-/* 文字幅 */
-
-const currentWidth =
-Math.max(
-dog.name.length * 18,
-120
-);
-
-const currentHeight = 58;
-
-/* 重なり回避 */
-
-while(!safe && loop < 500){
-
-x =
-Math.random() * 960 + 40;
-
-y =
-Math.random() * 560 + 40;
-
-safe = true;
-
-/* =========================
-ロゴ回避
-========================= */
-
-if(
-x > 360 &&
-x < 900 &&
-y > 200 &&
-y < 540
-){
-
-safe = false;
-
-}
-
-/* =========================
-他犬種回避
-========================= */
-
-placed.forEach(pos=>{
-
-const padding = 35;
-
-const overlapX =
-
-x <
-(pos.x + pos.width + padding)
-
-&&
-
-(x + currentWidth + padding)
->
-pos.x;
-
-const overlapY =
-
-y <
-(pos.y + pos.height + padding)
-
-&&
-
-(y + currentHeight + padding)
->
-pos.y;
-
-if(
-overlapX &&
-overlapY
-){
-
-safe = false;
-
-}
-
-});
-
-loop++;
-
-}
-
-/* 記録 */
-
-placed.push({
-
-x:x,
-y:y,
-width:currentWidth,
-height:currentHeight
-
-});
-
-/* 反映 */
-
-div.style.left =
-x + "px";
-
-div.style.top =
-y + "px";
-
-div.style.animationDuration =
-(Math.random()*3+5).toFixed(1)
-+ "s";
-
-div.style.background =
-colors[
-i % colors.length
-];
-
-div.innerHTML =
-"🐶 " + dog.name;
-
-dogScreen.appendChild(div);
-
-});
-
-}catch(e){
-
-console.log(e);
-
-}
-
-}
-
-/* 初回 */
-
-loadDogs();
-
-/* 更新 */
-
-setInterval(
-loadDogs,
-30000
-);
 
 /* BGM */
 
 const bgm =
 document.getElementById("bgm");
+
+/* 音量 */
 
 bgm.volume = 0.01;
 
@@ -679,44 +334,6 @@ console.log(e);
 }
 
 });
-
-/* 切り替え */
-
-const menuScreen =
-document.getElementById(
-"menuScreen"
-);
-
-const dogScreen =
-document.getElementById(
-"dogScreen"
-);
-
-let showDogs = false;
-
-setInterval(()=>{
-
-showDogs = !showDogs;
-
-if(showDogs){
-
-menuScreen.style.opacity = "0";
-menuScreen.style.pointerEvents = "none";
-
-dogScreen.style.opacity = "1";
-dogScreen.style.pointerEvents = "auto";
-
-}else{
-
-menuScreen.style.opacity = "1";
-menuScreen.style.pointerEvents = "auto";
-
-dogScreen.style.opacity = "0";
-dogScreen.style.pointerEvents = "none";
-
-}
-
-},20000);
 
 </script>
 

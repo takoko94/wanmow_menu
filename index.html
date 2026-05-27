@@ -138,30 +138,6 @@ object-fit:cover;
 
 }
 
-/* ロゴ */
-
-.logo{
-
-position:absolute;
-
-right:-40px;
-bottom:-40px;
-
-width:260px;
-
-object-fit:contain;
-
-filter:
-drop-shadow(
-0 10px 20px
-rgba(0,0,0,0.14)
-);
-
-animation:
-floatLogo 3s ease-in-out infinite;
-
-}
-
 /* キラ */
 
 .sparkle{
@@ -185,22 +161,6 @@ sparkle 4s infinite;
 /* アニメ */
 
 @keyframes floatMenu{
-
-0%{
-transform:translateY(0px);
-}
-
-50%{
-transform:translateY(-6px);
-}
-
-100%{
-transform:translateY(0px);
-}
-
-}
-
-@keyframes floatLogo{
 
 0%{
 transform:translateY(0px);
@@ -250,7 +210,7 @@ loop
 muted>
 
 <source
-src="bgm.mp3?v=3000"
+src="bgm.mp3?v=4000"
 type="audio/mpeg">
 
 </audio>
@@ -260,12 +220,8 @@ type="audio/mpeg">
 <div class="menuWrap">
 
 <img
-src="menu2.jpg?v=3000"
+src="menu2.jpg?v=4000"
 class="menuImage">
-
-<img
-src="logo.png?v=3000"
-class="logo">
 
 </div>
 

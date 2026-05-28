@@ -841,11 +841,12 @@ rankingScreen.style.zIndex = "10";
 
 }
 
+```javascript id="n7v0n5"
 /* =========================
 ループ
 menu2.jpg → 20秒
 menu3.png → 10秒
-ランキング → 10秒
+ランキング → 20秒
 ========================= */
 
 function nextScreen(){
@@ -869,7 +870,7 @@ showRanking();
 
 setTimeout(
 nextScreen,
-10000
+20000
 );
 
 }else{
@@ -887,12 +888,15 @@ nextScreen,
 
 }
 
-/* 開始 */
+/* =========================
+開始
+========================= */
 
 setTimeout(
 nextScreen,
 20000
 );
+
 
 </script>
 

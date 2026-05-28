@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -51,7 +52,6 @@ body{
 
   transition:
   opacity 1s ease;
-
 }
 
 /* =========================
@@ -593,8 +593,9 @@ id="menuScreen">
 <div class="menuWrap">
 
 <img
-src="menu2.jpg"
-class="menuImage">
+src="menu.jpg"
+class="menuImage"
+id="menuImage">
 
 </div>
 
@@ -784,21 +785,31 @@ document.getElementById(
 "rankingScreen"
 );
 
-let showRanking = false;
+const menuImage =
+document.getElementById(
+"menuImage"
+);
 
-setInterval(()=>{
+/* =========================
+状態
+0 = menu.jpg
+1 = menu3.png
+2 = ランキング
+========================= */
 
-showRanking = !showRanking;
+let state = 0;
 
-if(showRanking){
+/* 初期表示 */
 
-menuScreen.style.opacity = "0";
-rankingScreen.style.opacity = "1";
+showMenu1();
 
-menuScreen.style.zIndex = "1";
-rankingScreen.style.zIndex = "10";
+/* =========================
+表示関数
+========================= */
 
-}else{
+function showMenu1(){
+
+menuImage.src = "menu.jpg";
 
 menuScreen.style.opacity = "1";
 rankingScreen.style.opacity = "0";
@@ -808,9 +819,83 @@ rankingScreen.style.zIndex = "1";
 
 }
 
-},20000);
+function showMenu2(){
+
+menuImage.src = "menu3.png";
+
+menuScreen.style.opacity = "1";
+rankingScreen.style.opacity = "0";
+
+menuScreen.style.zIndex = "10";
+rankingScreen.style.zIndex = "1";
+
+}
+
+function showRanking(){
+
+menuScreen.style.opacity = "0";
+rankingScreen.style.opacity = "1";
+
+menuScreen.style.zIndex = "1";
+rankingScreen.style.zIndex = "10";
+
+}
+
+/* =========================
+ループ
+menu.jpg → 20秒
+menu3.png → 10秒
+ランキング → 10秒
+========================= */
+
+function nextScreen(){
+
+if(state === 0){
+
+state = 1;
+
+showMenu2();
+
+setTimeout(
+nextScreen,
+10000
+);
+
+}else if(state === 1){
+
+state = 2;
+
+showRanking();
+
+setTimeout(
+nextScreen,
+10000
+);
+
+}else{
+
+state = 0;
+
+showMenu1();
+
+setTimeout(
+nextScreen,
+20000
+);
+
+}
+
+}
+
+/* 開始 */
+
+setTimeout(
+nextScreen,
+20000
+);
 
 </script>
 
 </body>
 </html>
+```

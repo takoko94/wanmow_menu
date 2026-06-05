@@ -1,16 +1,9 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=1280,height=720">
-
-<title>
-わんも〜Cafe
-</title>
+<meta name="viewport" content="width=1280,height=720">
+<title>わんも〜Cafe</title>
 
 <style>
 
@@ -30,131 +23,12 @@ body{
   height:720px;
   overflow:hidden;
   position:relative;
-  background:#fff8f1;
   font-family:'PandaBakery',sans-serif;
 }
 
-/* =========================
-共通
-========================= */
+/* 背景 */
 
-.screen{
-  position:absolute;
-  inset:0;
-  width:1280px;
-  height:720px;
-  transition:opacity 1s ease;
-}
-
-/* =========================
-メニュー画面
-========================= */
-
-#menuScreen{
-
-  opacity:1;
-  z-index:10;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  background:
-  linear-gradient(
-  180deg,
-  #fff7f3 0%,
-  #fff2f6 100%
-  );
-
-}
-
-#menuScreen::before{
-
-  content:"";
-
-  position:absolute;
-  inset:0;
-
-  background:
-
-  radial-gradient(
-  circle at 10% 20%,
-  rgba(255,192,203,0.25),
-  transparent 18%
-  ),
-
-  radial-gradient(
-  circle at 85% 25%,
-  rgba(255,220,230,0.3),
-  transparent 16%
-  ),
-
-  radial-gradient(
-  circle at 50% 90%,
-  rgba(255,210,220,0.25),
-  transparent 18%
-  );
-
-}
-
-.menuWrap{
-
-  position:relative;
-  z-index:5;
-
-  animation:
-  floatMenu 4s ease-in-out infinite;
-
-}
-
-.menuImage{
-
-  display:block;
-
-  width:1120px;
-
-  border-radius:42px;
-
-  border:6px solid white;
-
-  box-shadow:
-  0 18px 40px
-  rgba(255,170,190,0.22);
-
-  object-fit:cover;
-
-}
-
-.menuSparkle{
-
-  position:absolute;
-
-  width:14px;
-  height:14px;
-
-  background:white;
-
-  border-radius:50%;
-
-  opacity:0.4;
-
-  animation:
-  sparkle 4s infinite;
-
-}
-
-/* =========================
-クッキー画面
-========================= */
-
-#rankingScreen{
-
-  opacity:0;
-  z-index:1;
-
-}
-
-.cookieBg{
+.bg{
   position:absolute;
   inset:0;
   width:100%;
@@ -162,249 +36,77 @@ body{
   object-fit:cover;
 }
 
-.cookieOverlay{
+/* メニュー */
+
+.menuScreen{
   position:absolute;
   inset:0;
-  background:rgba(255,255,255,0.08);
-}
-
-.logo{
-  position:absolute;
-  top:20px;
-  left:20px;
-  height:120px;
-  z-index:5;
-}
-
-.title{
-  position:absolute;
-  top:25px;
-  left:0;
-  width:100%;
-
-  text-align:center;
-
-  font-size:72px;
-
-  color:#ff7a9f;
-
-  z-index:5;
-
-  text-shadow:
-  0 3px 0 rgba(255,255,255,0.95),
-  0 0 18px rgba(255,255,255,0.9),
-  0 0 35px rgba(255,180,220,0.45);
-}
-
-.subtitle{
-  position:absolute;
-  top:105px;
-  left:0;
-  width:100%;
-
-  text-align:center;
-
-  font-size:26px;
-
-  color:#7a4214;
-
-  z-index:5;
-}
-
-.cookieWrap{
-
-  position:absolute;
-
-  top:145px;
-  left:40px;
-  right:40px;
-
-  display:grid;
-
-  grid-template-columns:
-  repeat(3,1fr);
-
-  gap:18px;
-
-  z-index:5;
-}
-
-.cookieCard{
-
-  height:170px;
-
-  border-radius:30px;
-
-  background:
-  linear-gradient(
-    180deg,
-    rgba(255,255,255,0.78),
-    rgba(255,255,255,0.55)
-  );
-
-  border:2px solid rgba(255,255,255,0.7);
-
-  backdrop-filter:blur(10px);
-
-  display:flex;
-  align-items:center;
-
-  padding:12px;
-
-  box-shadow:
-  0 10px 24px rgba(0,0,0,0.12);
-
-}
-
-.cookieImg{
-
-  width:140px;
-  height:140px;
-
-  object-fit:contain;
-}
-
-.cookieName{
-
-  flex:1;
-
-  text-align:center;
-
-  font-size:30px;
-
-  line-height:1.2;
-
-  color:#6b3400;
-
-  text-shadow:
-  0 2px 0 rgba(255,255,255,0.9);
-
-}
-
-.bottom{
-
-  position:absolute;
-
-  left:40px;
-  right:40px;
-  bottom:20px;
-
-  display:grid;
-
-  grid-template-columns:
-  1fr 1fr;
-
-  gap:20px;
-
-  z-index:5;
-}
-
-.panel{
-
-  height:140px;
-
-  border-radius:30px;
-
-  background:
-  linear-gradient(
-    180deg,
-    rgba(255,255,255,0.85),
-    rgba(255,255,255,0.65)
-  );
-
-  border:2px solid rgba(255,255,255,0.8);
 
   display:flex;
   align-items:center;
   justify-content:center;
+}
+
+.menuWrap{
+  position:relative;
+  z-index:2;
+
+  animation:floatMenu 4s ease-in-out infinite;
+}
+
+.menuImage{
+
+  width:1120px;
+
+  border-radius:42px;
+
+  border:6px solid #fff;
 
   box-shadow:
-  0 10px 24px rgba(0,0,0,0.12);
+  0 18px 40px rgba(255,170,190,0.25);
 
+  display:block;
 }
 
-.coin{
-  width:110px;
-  margin-right:20px;
+/* キラキラ */
+
+.sparkle{
+  position:absolute;
+  width:14px;
+  height:14px;
+  border-radius:50%;
+  background:white;
+  opacity:0.4;
+  animation:sparkle 4s infinite;
 }
 
-.gacha{
-  width:130px;
-  margin-right:20px;
-}
-
-.panelTitle{
-  font-size:38px;
-  color:#7a4214;
-  text-align:center;
-}
-
-.panelMain{
-  font-size:50px;
-  color:#ff7a9f;
-  text-align:center;
-}
-
-.panelSub{
-  font-size:22px;
-  color:#7a4214;
-  text-align:center;
-}
-
-  .menuSparkle.s1{
+.s1{
   top:120px;
   left:240px;
 }
 
-.menuSparkle.s2{
-  top:300px;
+.s2{
+  top:280px;
   right:220px;
   animation-delay:1s;
 }
 
-.menuSparkle.s3{
+.s3{
   bottom:140px;
   left:480px;
   animation-delay:2s;
 }
 
-.menuSparkle.s4{
+.s4{
   bottom:220px;
   right:380px;
   animation-delay:3s;
 }
 
-.cookieSparkle{
-  position:absolute;
-  font-size:32px;
-  z-index:5;
-  animation:float 4s ease-in-out infinite;
-}
-
-.cs1{
-  top:120px;
-  left:180px;
-}
-
-.cs2{
-  top:120px;
-  right:180px;
-}
-
-.cs3{
-  bottom:190px;
-  left:20px;
-}
-
-.cs4{
-  bottom:190px;
-  right:20px;
-}
-
 @keyframes floatMenu{
 
   0%{
-    transform:translateY(0px);
+    transform:translateY(0);
   }
 
   50%{
@@ -412,7 +114,7 @@ body{
   }
 
   100%{
-    transform:translateY(0px);
+    transform:translateY(0);
   }
 
 }
@@ -436,186 +138,36 @@ body{
 
 }
 
-@keyframes float{
-
-  0%,100%{
-    transform:translateY(0);
-  }
-
-  50%{
-    transform:translateY(-8px);
-  }
-
-}
-
 </style>
 </head>
 
 <body>
+
+<img src="haikei.png" class="bg">
 
 <audio
 id="bgm"
 autoplay
 loop
 muted>
-
-<source
-src="bgm.mp3"
-type="audio/mpeg">
-
+<source src="bgm.mp3" type="audio/mpeg">
 </audio>
 
-<!-- =========================
-メニュー画面
-========================= -->
+<div class="menuScreen">
 
-<div
-class="screen"
-id="menuScreen">
+  <div class="menuWrap">
 
-<div class="menuWrap">
+    <img
+      src="menu2.jpg"
+      class="menuImage"
+      id="menuImage">
 
-<img
-src="menu2.jpg"
-class="menuImage"
-id="menuImage">
+  </div>
 
-</div>
-
-<div class="menuSparkle s1"></div>
-<div class="menuSparkle s2"></div>
-<div class="menuSparkle s3"></div>
-<div class="menuSparkle s4"></div>
-
-</div>
-
-<!-- =========================
-クッキー画面
-========================= -->
-
-<div
-class="screen"
-id="rankingScreen">
-
-<img src="haikei.png" class="cookieBg">
-<div class="cookieOverlay"></div>
-
-<img
-src="wanmow_logo.png"
-class="logo">
-
-<div class="cookieSparkle cs1">✨</div>
-<div class="cookieSparkle cs2">✨</div>
-<div class="cookieSparkle cs3">🐾</div>
-<div class="cookieSparkle cs4">🐾</div>
-
-<div class="title">
-🍪 推し犬クッキー完成 🍪
-</div>
-
-<div class="subtitle">
-全6種類あるよ！
-</div>
-
-<div class="cookieWrap">
-
-<div class="cookieCard">
-<img src="cookiePomeranian.png" class="cookieImg">
-<div class="cookieName">
-🥇<br>
-ポメラニアン
-</div>
-</div>
-
-<div class="cookieCard">
-<img src="cookiehusky.png" class="cookieImg">
-<div class="cookieName">
-🥈<br>
-ハスキー
-</div>
-</div>
-
-<div class="cookieCard">
-<img src="cookiepug.png" class="cookieImg">
-<div class="cookieName">
-🥉<br>
-パグ
-</div>
-</div>
-
-<div class="cookieCard">
-<img src="cookiepoodle.png" class="cookieImg">
-<div class="cookieName">
-4位<br>
-プードル
-</div>
-</div>
-
-<div class="cookieCard">
-<img src="cookieChihuahua.png" class="cookieImg">
-<div class="cookieName">
-5位<br>
-チワワ
-</div>
-</div>
-
-<div class="cookieCard">
-<img src="cookiesiba.png" class="cookieImg">
-<div class="cookieName">
-特別枠<br>
-柴犬
-</div>
-</div>
-
-</div>
-
-<div class="bottom">
-
-<div class="panel">
-
-<img src="coin.png" class="coin">
-
-<div>
-
-<div class="panelTitle">
-コイン交換
-</div>
-
-<div class="panelMain">
-10枚 → 10個
-</div>
-
-<div class="panelSub">
-推し犬クッキー10個と交換！
-</div>
-
-</div>
-
-</div>
-
-<div class="panel">
-
-<img src="gacha.png" class="gacha">
-
-<div>
-
-<div class="panelTitle">
-ランダムクッキーガチャ
-</div>
-
-<div class="panelMain">
-1回 3,000円
-</div>
-
-<div class="panelSub">
-全6種類・ランダム
-</div>
-
-</div>
-
-</div>
-
-</div>
+  <div class="sparkle s1"></div>
+  <div class="sparkle s2"></div>
+  <div class="sparkle s3"></div>
+  <div class="sparkle s4"></div>
 
 </div>
 
@@ -630,135 +182,52 @@ window.addEventListener(
 "load",
 async ()=>{
 
-try{
+  try{
 
-await bgm.play();
-bgm.muted = false;
+    await bgm.play();
+    bgm.muted = false;
 
-}catch(e){
+  }catch(e){
 
-console.log(e);
+    console.log(e);
 
-}
+  }
 
 });
 
-const menuScreen =
-document.getElementById(
-"menuScreen"
-);
-
-const rankingScreen =
-document.getElementById(
-"rankingScreen"
-);
-
 const menuImage =
-document.getElementById(
-"menuImage"
-);
+document.getElementById("menuImage");
 
 let state = 0;
 
-showMenu1();
+function nextSlide(){
 
-function showMenu1(){
+  if(state === 0){
 
-menuImage.src =
-"menu2.jpg";
+    menuImage.src = "menu3.png";
+    state = 1;
 
-menuScreen.style.opacity =
-"1";
+    setTimeout(nextSlide,10000);
 
-rankingScreen.style.opacity =
-"0";
+  }else if(state === 1){
 
-menuScreen.style.zIndex =
-"10";
+    menuImage.src = "menu4.png";
+    state = 2;
 
-rankingScreen.style.zIndex =
-"1";
+    setTimeout(nextSlide,10000);
 
-}
+  }else{
 
-function showMenu2(){
+    menuImage.src = "menu2.jpg";
+    state = 0;
 
-menuImage.src =
-"menu3.png";
+    setTimeout(nextSlide,20000);
 
-menuScreen.style.opacity =
-"1";
-
-rankingScreen.style.opacity =
-"0";
-
-menuScreen.style.zIndex =
-"10";
-
-rankingScreen.style.zIndex =
-"1";
+  }
 
 }
 
-function showRanking(){
-
-menuScreen.style.opacity =
-"0";
-
-rankingScreen.style.opacity =
-"1";
-
-menuScreen.style.zIndex =
-"1";
-
-rankingScreen.style.zIndex =
-"10";
-
-}
-
-function nextScreen(){
-
-if(state === 0){
-
-state = 1;
-
-showMenu2();
-
-setTimeout(
-nextScreen,
-10000
-);
-
-}else if(state === 1){
-
-state = 2;
-
-showRanking();
-
-setTimeout(
-nextScreen,
-20000
-);
-
-}else{
-
-state = 0;
-
-showMenu1();
-
-setTimeout(
-nextScreen,
-20000
-);
-
-}
-
-}
-
-setTimeout(
-nextScreen,
-20000
-);
+setTimeout(nextSlide,20000);
 
 </script>
 

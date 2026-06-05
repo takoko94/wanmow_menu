@@ -23,81 +23,129 @@ body{
   height:720px;
   overflow:hidden;
   position:relative;
+
+  background:
+  linear-gradient(
+    180deg,
+    #fff7f3 0%,
+    #fff2f6 100%
+  );
+
   font-family:'PandaBakery',sans-serif;
 }
 
-/* 背景 */
-
-.bg{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-/* メニュー */
+/* =========================
+メニュー画面
+========================= */
 
 .menuScreen{
+
   position:absolute;
   inset:0;
 
   display:flex;
   align-items:center;
   justify-content:center;
+
+}
+
+.menuScreen::before{
+
+  content:"";
+
+  position:absolute;
+  inset:0;
+
+  background:
+
+  radial-gradient(
+    circle at 10% 20%,
+    rgba(255,192,203,0.25),
+    transparent 18%
+  ),
+
+  radial-gradient(
+    circle at 85% 25%,
+    rgba(255,220,230,0.30),
+    transparent 16%
+  ),
+
+  radial-gradient(
+    circle at 50% 90%,
+    rgba(255,210,220,0.25),
+    transparent 18%
+  );
+
 }
 
 .menuWrap{
-  position:relative;
-  z-index:2;
 
-  animation:floatMenu 4s ease-in-out infinite;
+  position:relative;
+  z-index:5;
+
+  animation:
+  floatMenu 4s ease-in-out infinite;
+
 }
 
 .menuImage{
+
+  display:block;
 
   width:1120px;
 
   border-radius:42px;
 
-  border:6px solid #fff;
+  border:6px solid white;
 
   box-shadow:
-  0 18px 40px rgba(255,170,190,0.25);
+  0 18px 40px rgba(255,170,190,0.22);
 
-  display:block;
+  object-fit:cover;
+
+  transition:
+  opacity .5s ease;
+
 }
 
 /* キラキラ */
 
-.sparkle{
+.menuSparkle{
+
   position:absolute;
+
   width:14px;
   height:14px;
-  border-radius:50%;
+
   background:white;
+
+  border-radius:50%;
+
   opacity:0.4;
-  animation:sparkle 4s infinite;
+
+  animation:
+  sparkle 4s infinite;
+
 }
 
-.s1{
+.menuSparkle.s1{
   top:120px;
   left:240px;
 }
 
-.s2{
-  top:280px;
+.menuSparkle.s2{
+  top:300px;
   right:220px;
   animation-delay:1s;
 }
 
-.s3{
+.menuSparkle.s3{
   bottom:140px;
   left:480px;
   animation-delay:2s;
 }
 
-.s4{
+.menuSparkle.s4{
   bottom:220px;
   right:380px;
   animation-delay:3s;
@@ -106,7 +154,7 @@ body{
 @keyframes floatMenu{
 
   0%{
-    transform:translateY(0);
+    transform:translateY(0px);
   }
 
   50%{
@@ -114,7 +162,7 @@ body{
   }
 
   100%{
-    transform:translateY(0);
+    transform:translateY(0px);
   }
 
 }
@@ -143,14 +191,16 @@ body{
 
 <body>
 
-<img src="haikei.png" class="bg">
-
 <audio
 id="bgm"
 autoplay
 loop
 muted>
-<source src="bgm.mp3" type="audio/mpeg">
+
+<source
+src="bgm.mp3"
+type="audio/mpeg">
+
 </audio>
 
 <div class="menuScreen">
@@ -158,16 +208,16 @@ muted>
   <div class="menuWrap">
 
     <img
-      src="menu2.jpg"
-      class="menuImage"
-      id="menuImage">
+    src="menu2.jpg"
+    class="menuImage"
+    id="menuImage">
 
   </div>
 
-  <div class="sparkle s1"></div>
-  <div class="sparkle s2"></div>
-  <div class="sparkle s3"></div>
-  <div class="sparkle s4"></div>
+  <div class="menuSparkle s1"></div>
+  <div class="menuSparkle s2"></div>
+  <div class="menuSparkle s3"></div>
+  <div class="menuSparkle s4"></div>
 
 </div>
 
@@ -196,38 +246,70 @@ async ()=>{
 });
 
 const menuImage =
-document.getElementById("menuImage");
+document.getElementById(
+"menuImage"
+);
 
 let state = 0;
 
 function nextSlide(){
 
-  if(state === 0){
+  menuImage.style.opacity = "0";
 
-    menuImage.src = "menu3.png";
-    state = 1;
+  setTimeout(()=>{
 
-    setTimeout(nextSlide,10000);
+    if(state === 0){
 
-  }else if(state === 1){
+      menuImage.src =
+      "menu3.png";
 
-    menuImage.src = "menu4.png";
-    state = 2;
+      state = 1;
 
-    setTimeout(nextSlide,10000);
+      menuImage.style.opacity = "1";
 
-  }else{
+      setTimeout(
+      nextSlide,
+      10000
+      );
 
-    menuImage.src = "menu2.jpg";
-    state = 0;
+    }else if(state === 1){
 
-    setTimeout(nextSlide,20000);
+      menuImage.src =
+      "menu4.png";
 
-  }
+      state = 2;
+
+      menuImage.style.opacity = "1";
+
+      setTimeout(
+      nextSlide,
+      10000
+      );
+
+    }else{
+
+      menuImage.src =
+      "menu2.jpg";
+
+      state = 0;
+
+      menuImage.style.opacity = "1";
+
+      setTimeout(
+      nextSlide,
+      20000
+      );
+
+    }
+
+  },500);
 
 }
 
-setTimeout(nextSlide,20000);
+setTimeout(
+nextSlide,
+20000
+);
 
 </script>
 

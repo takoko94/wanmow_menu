@@ -39,18 +39,15 @@ body{
 ========================= */
 
 .menuScreen{
-
   position:absolute;
   inset:0;
 
   display:flex;
   align-items:center;
   justify-content:center;
-
 }
 
 .menuScreen::before{
-
   content:"";
 
   position:absolute;
@@ -75,21 +72,17 @@ body{
     rgba(255,210,220,0.25),
     transparent 18%
   );
-
 }
 
 .menuWrap{
-
   position:relative;
   z-index:5;
 
   animation:
   floatMenu 4s ease-in-out infinite;
-
 }
 
 .menuImage{
-
   display:block;
 
   width:1120px;
@@ -105,13 +98,11 @@ body{
 
   transition:
   opacity .5s ease;
-
 }
 
 /* キラキラ */
 
 .menuSparkle{
-
   position:absolute;
 
   width:14px;
@@ -125,7 +116,6 @@ body{
 
   animation:
   sparkle 4s infinite;
-
 }
 
 .menuSparkle.s1{
@@ -208,7 +198,7 @@ type="audio/mpeg">
   <div class="menuWrap">
 
     <img
-    src="menu2.jpg"
+    src="wanmow_menu1.png"
     class="menuImage"
     id="menuImage">
 
@@ -261,7 +251,7 @@ function nextSlide(){
     if(state === 0){
 
       menuImage.src =
-      "menu3.png";
+      "wanmow_menu2.png";
 
       state = 1;
 
@@ -275,7 +265,7 @@ function nextSlide(){
     }else if(state === 1){
 
       menuImage.src =
-      "menu4.png";
+      "wanmow_menu3.png";
 
       state = 2;
 
@@ -289,7 +279,7 @@ function nextSlide(){
     }else{
 
       menuImage.src =
-      "menu2.jpg";
+      "wanmow_menu1.png";
 
       state = 0;
 
